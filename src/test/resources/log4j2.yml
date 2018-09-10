@@ -1,0 +1,17 @@
+Configuration:
+  appenders:
+    Console:
+      name: CONSOLE
+      target: SYSTEM_OUT
+      follow: true
+      PatternLayout:
+        pattern: "%d [%p] %style{%C{1.} [%t] %m}{bold,green}%n"
+
+  Loggers:
+    logger:
+    - name: org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+      level: warn
+    Root:
+      level: debug
+      AppenderRef:
+      - ref: CONSOLE

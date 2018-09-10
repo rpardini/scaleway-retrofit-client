@@ -1,0 +1,97 @@
+{
+  "maintenances": [],
+  "state_detail": "",
+  "image": {
+    "creation_date": "2018-07-04T12:50:30.750864+00:00",
+    "default_bootscript": {
+      "kernel": "http://169.254.42.24/kernel/x86_64-mainline-lts-4.4-4.4.127-rev1/vmlinuz-4.4.127",
+      "initrd": "http://169.254.42.24/initrd/initrd-Linux-x86_64-v3.14.5.gz",
+      "default": true,
+      "bootcmdargs": "LINUX_COMMON scaleway boot=local nbd.max_part=16",
+      "architecture": "x86_64",
+      "title": "x86_64 mainline 4.4.127 rev1",
+      "dtb": "",
+      "organization": "11111111-1111-4111-8111-111111111111",
+      "id": "6c9a8fa4-acbe-4fd4-b7c9-c5f818783e00",
+      "public": true
+    },
+    "from_server": null,
+    "arch": "x86_64",
+    "id": "ca9a9340-92e8-4c5f-8ae1-423466f7ef30",
+    "root_volume": {
+      "size": 50000000000,
+      "id": "109f7208-3087-4a7e-8800-f0fc602a7ff9",
+      "volume_type": "l_ssd",
+      "name": "snapshot-9e57ea92-a408-46d8-903e-6b7755175030-2018-06-28_15:17"
+    },
+    "name": "Ubuntu Xenial",
+    "modification_date": "2018-07-04T12:50:30.750864+00:00",
+    "state": "available",
+    "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
+    "extra_volumes": [],
+    "public": true
+  },
+  "creation_date": "2018-09-07T21:00:12.775320+00:00",
+  "public_ip": {
+    "dynamic": false,
+    "id": "10a4d9ad-fa5c-4699-b645-e0ede3657320",
+    "address": "51.15.42.12"
+  },
+  "private_ip": null,
+  "id": "d1b3b303-c815-444a-8938-0a7be2bcb95d",
+  "dynamic_ip_required": false,
+  "modification_date": "2018-09-07T21:00:12.775320+00:00",
+  "enable_ipv6": false,
+  "hostname": "scw-8d6ce4",
+  "state": "stopped",
+  "bootscript": {
+    "kernel": "http://169.254.42.24/kernel/x86_64-mainline-lts-4.4-4.4.127-rev1/vmlinuz-4.4.127",
+    "initrd": "http://169.254.42.24/initrd/initrd-Linux-x86_64-v3.14.5.gz",
+    "default": true,
+    "bootcmdargs": "LINUX_COMMON scaleway boot=local nbd.max_part=16",
+    "architecture": "x86_64",
+    "title": "x86_64 mainline 4.4.127 rev1",
+    "dtb": "",
+    "organization": "11111111-1111-4111-8111-111111111111",
+    "id": "6c9a8fa4-acbe-4fd4-b7c9-c5f818783e00",
+    "public": true
+  },
+  "location": null,
+  "boot_type": "local",
+  "ipv6": null,
+  "commercial_type": "START1-M",
+  "tags": [],
+  "arch": "x86_64",
+  "extra_networks": [],
+  "name": "scw-8d6ce4",
+  "protected": false,
+  "volumes": {
+    "0": {
+      "size": 50000000000,
+      "state": "available",
+      "name": "snapshot-9e57ea92-a408-46d8-903e-6b7755175030-2018-06-28_15:17",
+      "modification_date": "2018-09-07T21:00:12.775320+00:00",
+      "organization": "***REMOVED***",
+      "export_uri": null,
+      "creation_date": "2018-09-07T21:00:12.775320+00:00",
+      "id": "6efb44bc-74c5-49e7-b225-1a72980ff249",
+      "volume_type": "l_ssd"
+    },
+    "1": {
+      "size": 50000000000,
+      "state": "available",
+      "name": "Volume",
+      "modification_date": "2018-09-07T21:00:13.232016+00:00",
+      "organization": "***REMOVED***",
+      "export_uri": null,
+      "creation_date": "2018-09-07T21:00:12.775320+00:00",
+      "id": "71f275c6-1e74-44d2-956b-79726acd2632",
+      "volume_type": "l_ssd"
+    }
+  },
+  "security_group": {
+    "id": "406307be-f90f-4a96-a264-18ab0810c2e9",
+    "name": "Default security group"
+  },
+  "organization": "***REMOVED***"
+}

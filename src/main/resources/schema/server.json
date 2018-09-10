@@ -1,0 +1,452 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "required": [
+    "boot_type",
+    "commercial_type",
+    "dynamic_ip_required",
+    "enable_ipv6",
+    "image",
+    "name",
+    "organization",
+    "public_ip",
+    "tags",
+    "volumes"
+  ],
+  "type": "object",
+  "properties": {
+    "maintenances": {
+      "type": "array"
+    },
+    "state_detail": {
+      "type": "string"
+    },
+    "image": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "required": [
+            "arch",
+            "creation_date",
+            "default_bootscript",
+            "extra_volumes",
+            "from_server",
+            "id",
+            "modification_date",
+            "name",
+            "organization",
+            "public",
+            "root_volume",
+            "state"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "modification_date": {
+              "type": "string"
+            },
+            "public": {
+              "type": "boolean"
+            },
+            "creation_date": {
+              "type": "string"
+            },
+            "default_bootscript": {
+              "anyOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "required": [
+                    "architecture",
+                    "bootcmdargs",
+                    "default",
+                    "dtb",
+                    "id",
+                    "initrd",
+                    "kernel",
+                    "organization",
+                    "public",
+                    "title"
+                  ],
+                  "type": "object",
+                  "properties": {
+                    "kernel": {
+                      "type": "string"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "default": {
+                      "type": "boolean"
+                    },
+                    "dtb": {
+                      "type": "string"
+                    },
+                    "public": {
+                      "type": "boolean"
+                    },
+                    "initrd": {
+                      "type": "string"
+                    },
+                    "bootcmdargs": {
+                      "type": "string"
+                    },
+                    "architecture": {
+                      "type": "string"
+                    },
+                    "organization": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ]
+            },
+            "state": {
+              "type": "string"
+            },
+            "from_server": {
+              "type": "null"
+            },
+            "organization": {
+              "type": "string"
+            },
+            "extra_volumes": {
+              "type": "array"
+            },
+            "arch": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "root_volume": {
+              "required": [
+                "id",
+                "name",
+                "size",
+                "volume_type"
+              ],
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "volume_type": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "creation_date": {
+      "type": "string"
+    },
+    "public_ip": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "required": [
+            "address",
+            "dynamic",
+            "id"
+          ],
+          "type": "object",
+          "properties": {
+            "dynamic": {
+              "type": "boolean"
+            },
+            "id": {
+              "type": "string"
+            },
+            "address": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "private_ip": {
+      "type": [
+        "null",
+        "string"
+      ]
+    },
+    "id": {
+      "type": "string"
+    },
+    "dynamic_ip_required": {
+      "type": "boolean"
+    },
+    "modification_date": {
+      "type": "string"
+    },
+    "enable_ipv6": {
+      "type": "boolean"
+    },
+    "hostname": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "bootscript": {
+      "required": [
+        "architecture",
+        "bootcmdargs",
+        "default",
+        "dtb",
+        "id",
+        "initrd",
+        "kernel",
+        "organization",
+        "public",
+        "title"
+      ],
+      "type": "object",
+      "properties": {
+        "kernel": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "default": {
+          "type": "boolean"
+        },
+        "dtb": {
+          "type": "string"
+        },
+        "public": {
+          "type": "boolean"
+        },
+        "initrd": {
+          "type": "string"
+        },
+        "bootcmdargs": {
+          "type": "string"
+        },
+        "architecture": {
+          "type": "string"
+        },
+        "organization": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "location": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "required": [
+            "chassis_id",
+            "cluster_id",
+            "node_id",
+            "platform_id",
+            "zone_id"
+          ],
+          "type": "object",
+          "properties": {
+            "platform_id": {
+              "type": "string"
+            },
+            "node_id": {
+              "type": "string"
+            },
+            "cluster_id": {
+              "type": "string"
+            },
+            "zone_id": {
+              "type": "string"
+            },
+            "chassis_id": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "boot_type": {
+      "type": "string"
+    },
+    "ipv6": {
+      "type": "null"
+    },
+    "commercial_type": {
+      "type": "string"
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "arch": {
+      "type": "string"
+    },
+    "extra_networks": {
+      "items": {
+        "required": [
+          "address",
+          "gateway",
+          "netmask",
+          "type",
+          "version"
+        ],
+        "type": "object",
+        "properties": {
+          "netmask": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "gateway": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "type": "array"
+    },
+    "name": {
+      "type": "string"
+    },
+    "protected": {
+      "type": "boolean"
+    },
+    "volumes": {
+      "type": "object",
+      "properties": {
+        "1": {
+          "required": [
+            "name",
+            "organization",
+            "size",
+            "volume_type"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "modification_date": {
+              "type": "string"
+            },
+            "export_uri": {
+              "type": "null"
+            },
+            "volume_type": {
+              "type": "string"
+            },
+            "creation_date": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "organization": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "size": {
+              "type": "number"
+            }
+          }
+        },
+        "0": {
+          "required": [
+            "creation_date",
+            "export_uri",
+            "id",
+            "modification_date",
+            "name",
+            "organization",
+            "size",
+            "state",
+            "volume_type"
+          ],
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "modification_date": {
+              "type": "string"
+            },
+            "export_uri": {
+              "type": [
+                "null",
+                "string"
+              ]
+            },
+            "volume_type": {
+              "type": "string"
+            },
+            "creation_date": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "organization": {
+              "type": "string"
+            },
+            "id": {
+              "type": "string"
+            },
+            "size": {
+              "type": "number"
+            }
+          }
+        }
+      }
+    },
+    "security_group": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "organization": {
+      "type": "string"
+    }
+  }
+}

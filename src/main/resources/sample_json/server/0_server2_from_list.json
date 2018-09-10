@@ -1,0 +1,93 @@
+{
+  "maintenances": [],
+  "state_detail": "booted",
+  "image": {
+    "creation_date": "2017-01-05T10:01:28.406069+00:00",
+    "default_bootscript": null,
+    "from_server": null,
+    "arch": "x86_64",
+    "id": "89457135-d446-41ba-a8df-d53e5bb54710",
+    "root_volume": {
+      "size": 50000000000,
+      "id": "ba93f9c5-199d-41b2-8dc0-6194e1e675d5",
+      "volume_type": "l_ssd",
+      "name": "x86_64-ubuntu-xenial-2017-01-05_09:58"
+    },
+    "name": "Ubuntu Xenial (16.04 latest)",
+    "modification_date": "2017-01-05T16:51:53.592282+00:00",
+    "state": "available",
+    "organization": "abaeb1aa-760b-4391-aeab-c0622be90abf",
+    "extra_volumes": [],
+    "public": true
+  },
+  "creation_date": "2017-05-26T11:24:37.245171+00:00",
+  "public_ip": {
+    "dynamic": true,
+    "id": "1ecfeb3b-30d5-4b3e-a1ff-6b51f585a350",
+    "address": "163.172.134.40"
+  },
+  "private_ip": "10.1.169.53",
+  "id": "5ff2cb51-e5b1-4eb5-812a-81465ae09105",
+  "dynamic_ip_required": true,
+  "modification_date": "2018-01-06T12:33:52.735246+00:00",
+  "enable_ipv6": false,
+  "hostname": "logbox.par1.scaleway.miisy.me",
+  "state": "running",
+  "bootscript": {
+    "kernel": "http://169.254.42.24/kernel/x86_64-mainline-lts-4.9-4.9.75-rev1/vmlinuz-4.9.75",
+    "initrd": "http://169.254.42.24/initrd/initrd-Linux-x86_64-v3.13.0.gz",
+    "default": false,
+    "bootcmdargs": "LINUX_COMMON scaleway boot=local",
+    "architecture": "x86_64",
+    "title": "x86_64 mainline 4.9.75 rev1",
+    "dtb": "",
+    "organization": "11111111-1111-4111-8111-111111111111",
+    "id": "071f2121-5d56-4e0c-80cd-49558d309ae1",
+    "public": false
+  },
+  "location": {
+    "platform_id": "12",
+    "node_id": "16",
+    "cluster_id": "27",
+    "zone_id": "par1",
+    "chassis_id": "1"
+  },
+  "boot_type": "bootscript",
+  "ipv6": null,
+  "commercial_type": "C2L",
+  "tags": [
+    "logbox.par1.scaleway.miisy.me",
+    "***REMOVED*** env Scaleway ***REMOVED*** PAR1",
+    "***REMOVED***"
+  ],
+  "arch": "x86_64",
+  "extra_networks": [
+    {
+      "netmask": "255.255.255.254",
+      "version": "4",
+      "type": "private",
+      "gateway": "10.1.169.54",
+      "address": "10.1.169.55"
+    }
+  ],
+  "name": "logbox.par1.scaleway.miisy.me",
+  "protected": false,
+  "volumes": {
+    "0": {
+      "size": 50000000000,
+      "state": "available",
+      "name": "x86_64-ubuntu-xenial-2017-01-05_09:58",
+      "modification_date": "2017-05-26T11:24:37.245171+00:00",
+      "organization": "***REMOVED***",
+      "export_uri": "nbd://10.1.133.37:4576",
+      "creation_date": "2017-05-26T11:24:37.245171+00:00",
+      "id": "c250d94d-40dc-43d5-abc9-d8ea4f0c501c",
+      "volume_type": "l_ssd"
+    }
+  },
+  "security_group": {
+    "id": "0ffffa8e-2bea-4a6e-9c9f-465928a885a8",
+    "name": "Default security group"
+  },
+  "organization": "***REMOVED***"
+}
