@@ -22,21 +22,27 @@ public class ScalewayClient {
 
     private String authToken;
     private ScalewayRegion region;
+    private ScalewayServerAPI client;
 
+    public ScalewayClient(String authToken, ScalewayRegion region) {
+        this.authToken = authToken;
+        this.region = region;
+        this.createClient();
+    }
 
     @SneakyThrows
     public List<Server> getAllServers() {
-        Response<ServerListWrapper> execute = this.createClient().getAllServers().execute();
+        Response<ServerListWrapper> execute = client.getAllServers().execute();
         return execute.body().getServers();
     }
 
     @SneakyThrows
     public Server getSpecificServer(String id) {
-        Response<ServerSingleWrapper> execute = this.createClient().getServerById(id).execute();
+        Response<ServerSingleWrapper> execute = client.getServerById(id).execute();
         return execute.body().getServer();
     }
 
-    private ScalewayServerAPI createClient() {
+    private void createClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
         httpClient.interceptors().clear();
@@ -56,7 +62,7 @@ public class ScalewayClient {
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
-        return retrofit.create(ScalewayServerAPI.class);
+        client = retrofit.create(ScalewayServerAPI.class);
     }
 
 }
