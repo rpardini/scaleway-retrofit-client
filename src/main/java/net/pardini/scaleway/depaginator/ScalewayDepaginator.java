@@ -1,4 +1,4 @@
-package net.pardini.scaleway;
+package net.pardini.scaleway.depaginator;
 
 import lombok.SneakyThrows;
 import retrofit2.Response;

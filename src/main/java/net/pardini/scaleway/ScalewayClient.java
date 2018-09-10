@@ -3,6 +3,7 @@ package net.pardini.scaleway;
 import devcsrj.okhttp3.logging.HttpLoggingInterceptor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import net.pardini.scaleway.depaginator.ScalewayDepaginator;
 import net.pardini.scaleway.model.Image;
 import net.pardini.scaleway.model.Images;
 import net.pardini.scaleway.model.Organization;

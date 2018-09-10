@@ -96,7 +96,7 @@
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
                 <version>0.5.1</version>
                 <configuration>
-                    <sourceDirectory>${basedir}/src/main/resources/schema</sourceDirectory>
+                    <sourceDirectory>${basedir}/src/main/schemas</sourceDirectory>
                     <targetPackage>net.pardini.scaleway.model</targetPackage>
                     <sourceType>jsonschema</sourceType>
                     <outputDirectory>${project.build.directory}/generated-sources</outputDirectory>
