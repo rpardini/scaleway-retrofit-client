@@ -343,110 +343,66 @@
     },
     "volumes": {
       "type": "object",
-      "properties": {
-        "1": {
-          "required": [
-            "name",
-            "organization",
-            "size",
-            "volume_type"
-          ],
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "modification_date": {
-              "type": "string"
-            },
-            "export_uri": {
-              "type": "null"
-            },
-            "volume_type": {
-              "type": "string"
-            },
-            "creation_date": {
-              "type": "string"
-            },
-            "state": {
-              "type": "string"
-            },
-            "organization": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "size": {
-              "type": "number"
-            }
-          }
-        },
-        "0": {
-          "required": [
-            "creation_date",
-            "export_uri",
-            "id",
-            "modification_date",
-            "name",
-            "organization",
-            "size",
-            "state",
-            "volume_type"
-          ],
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "modification_date": {
-              "type": "string"
-            },
-            "export_uri": {
-              "type": [
-                "null",
-                "string"
-              ]
-            },
-            "volume_type": {
-              "type": "string"
-            },
-            "creation_date": {
-              "type": "string"
-            },
-            "state": {
-              "type": "string"
-            },
-            "organization": {
-              "type": "string"
-            },
-            "id": {
-              "type": "string"
-            },
-            "size": {
-              "type": "number"
-            }
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "organization",
+          "size",
+          "volume_type"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "modification_date": {
+            "type": "string"
+          },
+          "export_uri": {
+            "type": "null"
+          },
+          "volume_type": {
+            "type": "string"
+          },
+          "creation_date": {
+            "type": "string"
+          },
+          "state": {
+            "type": "string"
+          },
+          "organization": {
+            "type": "string"
+          },
+          "id": {
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          },
+          "server": {
+            "type": "object"
           }
         }
-      }
-    },
-    "security_group": {
-      "required": [
-        "id",
-        "name"
-      ],
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
+      },
+      "security_group": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
         }
+      },
+      "organization": {
+        "type": "string"
       }
-    },
-    "organization": {
-      "type": "string"
     }
   }
 }
