@@ -1,0 +1,115 @@
+{
+  "address_line2": null,
+  "address_country_code": "PT",
+  "address_line1": "***REMOVED*** N\u00ba13 1\u00baandar",
+  "support_level": "business",
+  "name": "***REMOVED***",
+  "modification_date": "2018-01-24T16:57:08.117630+00:00",
+  "currency": "EUR",
+  "locale": "en_US",
+  "customer_class": "corporate",
+  "support_id": "425961",
+  "creation_date": "2016-04-12T16:32:00.940064+00:00",
+  "address_postal_code": "1050-132",
+  "address_city_name": "Lisboa",
+  "address_subdivision_code": "PT-11",
+  "vat_number": "***REMOVED***",
+  "support_pin": "5700",
+  "id": "***REMOVED***",
+  "warnings": [
+    {
+      "reason": "validate_tos",
+      "locked_at": "2016-04-12T16:32:00.940064+00:00",
+      "opened_at": "2016-04-12T16:32:00.940064+00:00",
+      "closable_by_user": true,
+      "closed": true,
+      "closed_at": "2016-04-12T16:32:06.935545+00:00",
+      "locking": true,
+      "id": "f0bca29e-cb29-460c-b143-5ba86e9226fd"
+    },
+    {
+      "reason": "billing_info_missing",
+      "locked_at": "2016-04-12T16:32:00.940064+00:00",
+      "opened_at": "2016-04-12T16:32:00.940064+00:00",
+      "closable_by_user": false,
+      "closed": true,
+      "closed_at": "2016-04-12T16:34:03.224920+00:00",
+      "locking": true,
+      "id": "050d3223-1444-4027-a54b-9c10dda844df"
+    },
+    {
+      "reason": "payment_info_missing",
+      "locked_at": "2016-04-12T16:32:00.940064+00:00",
+      "opened_at": "2016-04-12T16:32:00.940064+00:00",
+      "closable_by_user": false,
+      "closed": true,
+      "closed_at": "2017-04-21T15:08:34.514781+00:00",
+      "locking": true,
+      "id": "12ebdde5-8b09-4987-b5a5-f66d5b6a88e0"
+    },
+    {
+      "reason": "phone_missing",
+      "locked_at": null,
+      "opened_at": "2016-04-12T16:32:00.940064+00:00",
+      "closable_by_user": false,
+      "closed": true,
+      "closed_at": "2017-04-21T15:08:34.514781+00:00",
+      "locking": false,
+      "id": "ff394f54-a49e-488f-ac80-55d9f3536bc6"
+    }
+  ],
+  "users": [
+    {
+      "phone_number": null,
+      "double_auth_enabled": false,
+      "firstname": "***REMOVED***",
+      "lastname": "sa",
+      "creation_date": "2016-04-12T16:32:00.940064+00:00",
+      "ssh_public_keys": [
+        {
+          "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEArctf6BOlHibKNzybvem4GjyO+ivdt4VYSUsD0Qp2vfbDQA9A2ckj9xCm7fgtCVwiS5KrOKOflV7e+D08qzTmntPuDK++GtxFBzvwu7QKw336KODw8Lnyuj9pPk5qUdMLPUwtLtTGMMa6rGsXUuH88JHlSkET00uegwmx4sICKD0= rsa-key-20071017 ***REMOVED***",
+          "fingerprint": "1024 03:4b:3c:3f:45:ec:8f:4e:45:f3:b5:04:a8:79:b4:1c  rsa-key-20071017 ***REMOVED*** (no comment) (RSA)"
+        },
+        {
+          "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEA3t4rRbhomsNQDsvi34U2prce+7Mbbxy0Xu6WqF4oftGiiSgMcizsAE8LnH3K/1ejvzT2UiycGSkff37d87jmv35Mc2qToTfsPCQ2eSEDv5q4GLRp8/UxbmScoNHBhpphcqmyi4+nCYBVMIxtO5vb6JP8hlI8JazO6jdfYKzgh7c= ***REMOVED*** Personal Private Key",
+          "fingerprint": "1024 3e:71:11:ea:e0:5b:f9:7f:18:a1:27:76:2f:01:ac:76  ***REMOVED*** Personal Private Key (no comment) (RSA)"
+        },
+        {
+          "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAmmSEn1sE98r9S3eOvxb6Pv73mIXCJZJiSLRvjdw8gxmUUBcI0Jpxj4wMWIno4sn/uBclDhdJ6jdDw+FHMxSKldRDv1iHpfqB/Ro77UHqV7egBSBZELh+YLiTZostBCem4oCpHrgLF63OXuya+kw8+9h9OyW46thlgsI7f9ijJJ9iuKL9rSIRGHiH4IMyb71mk7UKQnVuyIgt4dU778OccuhjeBNgJpIozejFAextEir3a8XEqbY3zISnhN6u6mj4BrHD7tKeECB+r4+33RWMc1S0uwma+7GGlRdVo8NCegGNEKfi76SeH155akLfSjBH77Dj/UHg8L1BF/mQYAdZUQ== ***REMOVED*** 2017",
+          "fingerprint": "2048 c0:34:e0:33:77:f9:28:26:72:de:b8:16:59:8c:58:53  ***REMOVED*** 2017 (no comment) (RSA)"
+        },
+        {
+          "key": "ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAgpGkYRzpRp7Ri8rpBwPyCQwNNrluMpI63HGqZeG1quswapAsLYg4pNAGWrwaT9zWj5sFukf/Pd6ucVAXXmFVetvqq1bPqmtRzw9G9t+VK53/qTEJi2O2AcjWmz4W19IRLYcaP66jUIRd17E4Ar50uWAVFF9tnsDDZ6uNoGqKDVnuT6H8HsZjYlx/ah9Cac1lc69KizYvn5PoWFheotZNINAn2HM4o6OMaLTzuTjNxVuvjOvv1R4kAftZCwMSvSVsXXS1T9uMGrMdEJ7tX8NL40R2RCOUVX/eLUSzN8SgyL4bmVrWAHB7dO0Bpos/IV/CKzbdw0+hWBFFH8BClidzGw== ***REMOVED*** 2017",
+          "fingerprint": "2048 fe:9a:13:08:c0:90:e9:98:e6:e5:ac:d0:cb:03:50:ac  ***REMOVED*** 2017 (no comment) (RSA)"
+        },
+        {
+          "key": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIL4UDw0C+6G2J1Uyt6LKcrSMPKwB0crAB3OfA772Q0DW ***REMOVED*** 2017 ed25519 key",
+          "fingerprint": "256 bc:73:8c:53:8e:a7:60:63:6c:eb:fe:3f:07:d0:0b:e7  ***REMOVED*** 2017 ed25519 key (no comment) (ED25519)"
+        },
+        {
+          "key": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDABxEG/+1GqoIGva3BQIppLDnmkWuTziHkUmVsYPsAW0g5Q9mZawl2v8ehjnVff/A/eSZzWjmYX4MaqIRmKHS28kXznDu+c5yaxzlOiZNfh8qJOfwWVD7LuK/C7f6RX3NhpfVMGjO6gQ6kQrdRxSRqayZYcNzWH548y6+JSKDUrpj5CBQ4eSi7E5Qxe+LmRm8I7ukp4aZUBgGEG3S+rt0d6UjxUg8DLLN7hYnKmCUPWo3gDcIvqg2pRi4mV56plJ+qPBriaCJdpxf9IQXJ3lakE0cg5PUWcmHT8zY+2LjBCxKfeMU/lMCpR8sypYJvmwa+AAT+GXrto8/fbWIpVJrDDl/S7sWYi8WVndnR9UiC0bKEGcjvOjTKspohvSJxnE2Jum1jfxUs5Z9JE6yMDPEFSC1Je0sOj7kzNgkUo3lPk3z1VEYEh71G0J+affyCP7+1SIuTQrzjbMBswfMWhnZXmxiHyXpKKGyRljLpGhuycL4ujhKIANWrMgCw/3GBLaCKrNFmZjKBofIm6bqLqJyqPosWuymy7uxcSOjATCdYDmnX0MzsuZ9C9gqqQx0vB3wLWqmQwevOksJmFBkkPF9PEYIovpthtn5wVBEI7J630t94//W0bqFFOxS5JPhPnTLdfEYWDW85EGOYQK/8kyOZPWtaC/s73JDLoB0Xh9gaqQ== ***REMOVED*** 2017 Yubikey White",
+          "fingerprint": "4096 6e:4c:cf:a7:34:03:f2:16:b6:cb:20:8a:c3:cc:10:df  ***REMOVED*** 2017 Yubikey White (no comment) (RSA)"
+        }
+      ],
+      "id": "86df280f-65bd-4899-bfee-8994b5a3ae5a",
+      "organizations": [
+        {
+          "id": "***REMOVED***",
+          "name": "***REMOVED***"
+        }
+      ],
+      "modification_date": "2016-04-12T16:32:00.940064+00:00",
+      "roles": [
+        {
+          "organization": {
+            "id": "***REMOVED***",
+            "name": "***REMOVED***"
+          },
+          "role": "admin"
+        }
+      ],
+      "fullname": "***REMOVED*** sa",
+      "email": "***REMOVED***"
+    }
+  ]
+}

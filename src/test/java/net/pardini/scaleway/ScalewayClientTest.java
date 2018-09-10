@@ -1,6 +1,8 @@
 package net.pardini.scaleway;
 
 import lombok.extern.slf4j.Slf4j;
+import net.pardini.scaleway.model.Image;
+import net.pardini.scaleway.model.Organization;
 import net.pardini.scaleway.model.Server;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +32,22 @@ public class ScalewayClientTest {
         log.info("Here is the server list");
         log.info(allServers.toString());
         assertTrue("has more than one server", allServers.size() > 2);
+    }
+
+    @Test
+    public void testGettingAllImages() {
+        List<Image> allServers = client.getAllImages();
+        log.info("Here is the image list");
+        log.info(allServers.toString());
+        assertTrue("has more than one image", allServers.size() > 2);
+    }
+
+    @Test
+    public void testGettingAllOrgs() {
+        List<Organization> allOrganizations = client.getAllOrganizations();
+        log.info("Here is the allOrganizations list");
+        log.info(allOrganizations.toString());
+        assertTrue("has Exactly one org", allOrganizations.size() == 1);
 
     }
 

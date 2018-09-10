@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/schema#", 
+  "required": [
+    "images"
+  ], 
+  "type": "object", 
+  "properties": {
+    "images": {
+      "items": {
+        "required": [
+          "arch", 
+          "creation_date", 
+          "default_bootscript", 
+          "extra_volumes", 
+          "from_server", 
+          "id", 
+          "modification_date", 
+          "name", 
+          "organization", 
+          "public", 
+          "root_volume", 
+          "state"
+        ], 
+        "type": "object", 
+        "properties": {
+          "name": {
+            "type": "string"
+          }, 
+          "modification_date": {
+            "type": "string"
+          }, 
+          "public": {
+            "type": "boolean"
+          }, 
+          "creation_date": {
+            "type": "string"
+          }, 
+          "default_bootscript": {
+            "anyOf": [
+              {
+                "type": "null"
+              }, 
+              {
+                "required": [
+                  "architecture", 
+                  "bootcmdargs", 
+                  "default", 
+                  "dtb", 
+                  "id", 
+                  "initrd", 
+                  "kernel", 
+                  "organization", 
+                  "public", 
+                  "title"
+                ], 
+                "type": "object", 
+                "properties": {
+                  "kernel": {
+                    "type": "string"
+                  }, 
+                  "title": {
+                    "type": "string"
+                  }, 
+                  "default": {
+                    "type": "boolean"
+                  }, 
+                  "dtb": {
+                    "type": "string"
+                  }, 
+                  "public": {
+                    "type": "boolean"
+                  }, 
+                  "initrd": {
+                    "type": "string"
+                  }, 
+                  "bootcmdargs": {
+                    "type": "string"
+                  }, 
+                  "architecture": {
+                    "type": "string"
+                  }, 
+                  "organization": {
+                    "type": "string"
+                  }, 
+                  "id": {
+                    "type": "string"
+                  }
+                }
+              }
+            ]
+          }, 
+          "state": {
+            "type": "string"
+          }, 
+          "from_server": {
+            "type": "null"
+          }, 
+          "organization": {
+            "type": "string"
+          }, 
+          "extra_volumes": {
+            "type": "array"
+          }, 
+          "arch": {
+            "type": "string"
+          }, 
+          "id": {
+            "type": "string"
+          }, 
+          "root_volume": {
+            "required": [
+              "id", 
+              "name", 
+              "size", 
+              "volume_type"
+            ], 
+            "type": "object", 
+            "properties": {
+              "id": {
+                "type": "string"
+              }, 
+              "name": {
+                "type": "string"
+              }, 
+              "volume_type": {
+                "type": "string"
+              }, 
+              "size": {
+                "type": "number"
+              }
+            }
+          }
+        }
+      }, 
+      "type": "array"
+    }
+  }
+}
