@@ -110,6 +110,7 @@
                     <includeAdditionalProperties>true</includeAdditionalProperties>
                     <includeJsr303Annotations>true</includeJsr303Annotations>
                     <includeToString>true</includeToString>
+                    <useLongIntegers>true</useLongIntegers><!-- avoid ints exploding -->
                 </configuration>
                 <executions>
                     <execution>
