@@ -16,6 +16,9 @@ public class ScalewayDepaginator<T, R> {
         ArrayList<R> allItems = new ArrayList<>();
         while (areThereMorePages) {
             Response<T> execute = hitter.hitScalewayForPage(currPage).execute();
+            if (!execute.isSuccessful()) {
+                throw new RuntimeException("Scaleway query in depaginator not successful: " + execute.message());
+            }
             int totalItems = Integer.parseInt(execute.headers().get("X-Total-Count"));
             Collection<R> thisPageImages = extractor.extractListObject(execute);
             allItems.addAll(thisPageImages);

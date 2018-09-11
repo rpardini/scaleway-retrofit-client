@@ -20,12 +20,13 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Slf4j
 public class ScalewayClient {
 
-    private static final int DEFAULT_PAGE_SIZE = 88;
+    private static final int DEFAULT_PAGE_SIZE = 100;
     private final ScalewayAccountAPI accountClient;
     private final ScalewayServerAPI computeClient;
     private String authToken;
@@ -49,9 +50,39 @@ public class ScalewayClient {
     }
 
     @SneakyThrows
+    public List<Server> findServersByName(String name) {
+        return new ScalewayDepaginator<ServerListWrapper, Server>().depaginate(execute -> execute.body().getServers(), currPage -> computeClient.findServerByName(DEFAULT_PAGE_SIZE, currPage, name));
+    }
+
+    @SneakyThrows
+    public Server findServerByName(String name) {
+        List<Server> serverList = new ScalewayDepaginator<ServerListWrapper, Server>().depaginate(execute -> execute.body().getServers(), currPage -> computeClient.findServerByName(DEFAULT_PAGE_SIZE, currPage, name));
+        return serverList.size() == 1 ? serverList.get(0) : null;
+    }
+
+
+    @SneakyThrows
     public List<Image> getAllImages() {
         return new ScalewayDepaginator<Images, Image>().depaginate(execute -> execute.body().getImages(), currPage -> computeClient.getAllImages(DEFAULT_PAGE_SIZE, currPage));
     }
+
+    @SneakyThrows
+    public List<Image> getArchImages(String arch) {
+        return new ScalewayDepaginator<Images, Image>().depaginate(execute -> execute.body().getImages(), currPage -> computeClient.getArchImages(DEFAULT_PAGE_SIZE, currPage, arch));
+    }
+
+    @SneakyThrows
+    public List<Image> getArchImagesByName(String arch, String name) {
+        return new ScalewayDepaginator<Images, Image>().depaginate(execute -> execute.body().getImages(), currPage -> computeClient.getArchImagesByName(DEFAULT_PAGE_SIZE, currPage, arch, name));
+    }
+
+    public Image getBestArchImageByName(String arch, String name) {
+        List<Image> archImagesByName = this.getArchImagesByName(arch, name);
+        // sort... ?
+        archImagesByName.sort(Comparator.comparing(Image::getModificationDate).reversed());
+        return archImagesByName.get(0);
+    }
+
 
     @SneakyThrows
     public Server getSpecificServer(String id) {

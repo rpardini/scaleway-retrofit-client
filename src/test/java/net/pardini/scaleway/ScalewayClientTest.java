@@ -35,11 +35,48 @@ public class ScalewayClientTest {
     }
 
     @Test
+    public void testFindingExactServerByName() {
+        Server theserver = client.findServerByName("logbox.par1.scaleway.miisy.me");
+        assertEquals("found the exact server", "logbox.par1.scaleway.miisy.me", theserver.getName());
+    }
+
+    @Test
     public void testGettingAllImages() {
         List<Image> allServers = client.getAllImages();
         log.info("Here is the image list");
         log.info(allServers.toString());
         assertTrue("has more than one image", allServers.size() > 2);
+    }
+
+    @Test
+    public void testGettingx64ImagesImages() {
+        List<Image> allServers = client.getArchImages("x86_64");
+        log.info("Here is the image list");
+        log.info(allServers.toString());
+        assertTrue("has more than one image", allServers.size() > 490);
+    }
+
+    @Test
+    public void testGettingArm64ImagesImages() {
+        List<Image> allServers = client.getArchImages("arm64");
+        log.info("Here is the image list");
+        log.info(allServers.toString());
+        assertTrue("has more than one image", allServers.size() > 170);
+    }
+
+
+    @Test
+    public void testGettingx64UbuntuXenialImages() {
+        List<Image> allServers = client.getArchImagesByName("x86_64", "Ubuntu Xenial");
+        log.info("Here is the image list");
+        log.info(allServers.toString());
+        assertTrue("has more than one image", allServers.size() > 100);
+    }
+
+    @Test
+    public void testGettingLatestUbuntuXenialX64Image() {
+        Image theImage = client.getBestArchImageByName("x86_64", "Ubuntu Xenial");
+        assertTrue("found an image", theImage != null);
     }
 
     @Test
