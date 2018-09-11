@@ -38,12 +38,12 @@ public interface ScalewayServerAPI {
     @Headers("Content-type: application/json")
     @POST("/servers")
     public Call<ServerSingleWrapper> createServer(@Body Server serverDefinition);
-    
+
     @Headers("Content-type: text/plain")
     @PATCH("/servers/{serverId}/user_data/cloud-init")
     public Call<ResponseBody> setServerCloudInitData(@Path("serverId") String serverId, @Body RequestBody cloudInitContents);
-    
-    
+
+
     @POST("/servers/{serverId}/action")
     public Call<Taskresult> powerOnServer(@Path("serverId") String serverId, @Body Actions action);
 

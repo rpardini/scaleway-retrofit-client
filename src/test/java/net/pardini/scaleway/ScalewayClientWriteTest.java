@@ -1,13 +1,13 @@
 package net.pardini.scaleway;
 
 import lombok.extern.slf4j.Slf4j;
-import net.pardini.scaleway.model.*;
+import net.pardini.scaleway.model.Image;
+import net.pardini.scaleway.model.Organization;
+import net.pardini.scaleway.model.Server;
 import net.pardini.scaleway.wrapper.VolumeBuilder;
-import net.pardini.scaleway.wrapper.VolumeWrapper;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import static net.pardini.scaleway.ScalewayClientReadonlyTest.TEST_TOKEN;
@@ -41,11 +41,11 @@ public class ScalewayClientWriteTest {
         Image bestUbuntuXenial = client.getBestArchImageByName("x86_64", "Ubuntu Xenial");
         String cloudInitUrl = "https://cloud-init.pardini.net/base";
 
-        
+
         Server createdServer = client.createServer(Server.CommercialType.START_1_L, bestUbuntuXenial.getId(), "newapi-test-123-large", myOrg.getId(), Arrays.asList("uma", "tag", "large", "desta vez eh large"), cloudInitUrl,
                 VolumeBuilder.builder().addVolume("datadisk", 150).build()
         );
-        
+
         log.info("createdServer!" + createdServer.toString());
         Server startedServerInfo = client.powerOnServer(createdServer.getId());
         log.info("Started server!");

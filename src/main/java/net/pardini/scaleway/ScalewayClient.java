@@ -150,9 +150,8 @@ public class ScalewayClient {
 
     @SneakyThrows
     private void makeSureResponseSucessfull(Response someResponse) {
-        // @TODO: better error handling.
         if (!someResponse.isSuccessful())
-            throw new RuntimeException("Call execution failed: " + someResponse.message() + ": " + someResponse.errorBody().string());
+            throw new RuntimeException("Scaleway Call failed: " + someResponse.message() + ": " + someResponse.errorBody().string());
     }
 
     @SneakyThrows
