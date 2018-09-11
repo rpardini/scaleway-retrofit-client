@@ -8,7 +8,6 @@
     "image",
     "name",
     "organization",
-    "public_ip",
     "tags",
     "volumes"
   ],
@@ -153,30 +152,23 @@
       "format": "date-time"
     },
     "public_ip": {
-      "anyOf": [
-        {
+      "required": [
+        "address",
+        "dynamic",
+        "id"
+      ],
+      "type": "object",
+      "properties": {
+        "dynamic": {
+          "type": "boolean"
+        },
+        "id": {
           "type": "string"
         },
-        {
-          "required": [
-            "address",
-            "dynamic",
-            "id"
-          ],
-          "type": "object",
-          "properties": {
-            "dynamic": {
-              "type": "boolean"
-            },
-            "id": {
-              "type": "string"
-            },
-            "address": {
-              "type": "string"
-            }
-          }
+        "address": {
+          "type": "string"
         }
-      ]
+      }
     },
     "private_ip": {
       "type": [

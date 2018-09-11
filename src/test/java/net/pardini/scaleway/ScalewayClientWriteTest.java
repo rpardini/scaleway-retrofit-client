@@ -26,10 +26,15 @@ public class ScalewayClientWriteTest {
     public void testCreatingSimpleServer() {
         Organization myOrg = client.getOneAndOnlyOrganization();
         Image bestUbuntuXenial = client.getBestArchImageByName("x86_64", "Ubuntu Xenial");
+        
         Server createdServer = client.createServer(Server.CommercialType.START_1_S, bestUbuntuXenial.getId(), "newapi-test-123", myOrg.getId(), Arrays.asList("uma", "tag", "aqui"), "https://cloud-init.pardini.net/base");
+        
         log.info("createdServer!" + createdServer.toString());
+
+        Server startedServerInfo = client.powerOnServer(createdServer.getId());
         
+        log.info("Started server!");
+        log.info("IP address is: " + startedServerInfo.getPublicIp().getAddress());
         
-        client.powerOnServer(createdServer.getId());
     }
 }

@@ -205,10 +205,8 @@
         "type": "object",
         "properties": {
           "locked_at": {
-            "type": [
-              "null",
-              "string"
-            ]
+            "type": "string",
+            "format": "date-time"
           },
           "closable_by_user": {
             "type": "boolean"
@@ -220,13 +218,15 @@
             "type": "string"
           },
           "opened_at": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "closed": {
             "type": "boolean"
           },
           "closed_at": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "id": {
             "type": "string"

@@ -18,16 +18,19 @@
       "type": "object",
       "properties": {
         "status": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "pending",
+            "success",
+            "failed"
+          ]
         },
         "description": {
           "type": "string"
         },
         "terminated_at": {
-          "type": [
-            "null",
-            "string"
-          ]
+          "type": "string",
+          "format": "date-time"
         },
         "href_from": {
           "type": "string"
@@ -36,7 +39,8 @@
           "type": "integer"
         },
         "started_at": {
-          "type": "string"
+          "type": "string",
+          "format": "date-time"
         },
         "id": {
           "type": "string"

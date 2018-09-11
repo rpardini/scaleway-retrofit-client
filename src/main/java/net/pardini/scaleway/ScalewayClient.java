@@ -40,7 +40,15 @@ public class ScalewayClient {
     }
 
     @SneakyThrows
-    void powerOnServer(String serverId) {
+    Server powerOnServer(String serverId) {
+        // Check to see if the server is not already powered-on...
+        Server currentServerInfo = this.getSpecificServer(serverId);
+        if (currentServerInfo.getState().equals("running")) {
+            log.warn("Server " + serverId + " (" + currentServerInfo.getName() + ") is already running. Not powering it on again.");
+            return currentServerInfo;
+        }
+
+        // Actually power it on, then.
         Actions action = new Actions();
         action.setAction(Actions.Action.POWERON);
         Response<Taskresult> taskresultResponse = computeClient.powerOnServer(serverId, action).execute();
@@ -48,26 +56,42 @@ public class ScalewayClient {
 
         log.info(taskresultResponse.toString());
         String taskId = taskresultResponse.body().getTask().getId();
-        String taskStatus = taskresultResponse.body().getTask().getStatus();
+        Task.Status status = taskresultResponse.body().getTask().getStatus();
 
-        while (!taskStatus.equals("success")) {
+
+        currentServerInfo = this.getSpecificServer(serverId);
+        log.info("Current server status: " + currentServerInfo.getState() + " detail: " + currentServerInfo.getStateDetail());
+
+        while (status == Task.Status.PENDING) {
 
             log.info("Waiting for task result...");
-            Thread.sleep(5*1000);
-            
+            Thread.sleep(5 * 1000);
+
             Response<Taskresult> newTaskStatusResponse = computeClient.getTaskStatus(taskId).execute();
             makeSureResponseSucessfull(newTaskStatusResponse);
 
             log.info("New task result: " + newTaskStatusResponse.body().getTask());
-            taskStatus = newTaskStatusResponse.body().getTask().getStatus();
+            status = newTaskStatusResponse.body().getTask().getStatus();
+
+            currentServerInfo = this.getSpecificServer(serverId);
+            log.info("Current server status: " + currentServerInfo.getState() + " detail: " + currentServerInfo.getStateDetail());
 
         }
+
+        return currentServerInfo;
 
     }
 
 
     @SneakyThrows
     public Server createServer(Server.CommercialType commercialType, String imageId, String name, String orgId, List<String> tags, String cloudInitUrl) {
+        // First try and find the server by name, to avoid duplicating...?
+        Server serverByName = this.findServerByName(name);
+        if (serverByName != null) {
+            log.warn("Server " + name + " already exists. Not creating a new one.");
+            return serverByName;
+        }
+
         Server serverDefinition = new Server();
         serverDefinition.setCommercialType(commercialType);
         serverDefinition.setImage(imageId);

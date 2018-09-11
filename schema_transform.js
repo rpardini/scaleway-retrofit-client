@@ -58,7 +58,7 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
 
     // Hack all "simple" fields with name ending in '_date' to string with a date-time format.
     
-    if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1].endsWith("_date")) ) {
+    if ( (pathToSchemaFromParent[0] === "properties") && ( (pathToSchemaFromParent[1].endsWith("_date")) || (pathToSchemaFromParent[1].endsWith("_at"))) ) {
         console.log("Found a date, I think....", pathToSchemaFromParent);
         schemaObjOrBoolean["type"] = "string";
         schemaObjOrBoolean["format"] ="date-time";
@@ -77,6 +77,11 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
     if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "action") ) {
         console.log("Found a action, I think....", pathToSchemaFromParent);
         schemaObjOrBoolean["enum"] = ["poweron", "poweroff", "reboot"];
+    }
+
+    if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "status") ) {
+        console.log("Found a status, I think....", pathToSchemaFromParent);
+        schemaObjOrBoolean["enum"] = ["pending", "success", "failed"]; // failed? theres no docs, SW!
     }
 
     if ( (pathToSchemaFromParent[0] === "properties") && ((pathToSchemaFromParent[1] === "location") || (pathToSchemaFromParent[1] === "default_bootscript"))  ) {
