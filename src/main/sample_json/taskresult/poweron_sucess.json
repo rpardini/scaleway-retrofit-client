@@ -1,0 +1,11 @@
+{
+  "task": {
+    "status": "pending",
+    "description": "server_batch_poweron",
+    "terminated_at": null,
+    "href_from": "/servers/1e714cfc-6051-424e-9b97-28ebdc6d15fe/action",
+    "progress": 0,
+    "started_at": "2018-09-11T12:44:37.309105+00:00",
+    "id": "451a4b1d-9a84-4b2d-92e2-92a118e95d14"
+  }
+}

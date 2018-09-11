@@ -6,16 +6,16 @@ import devcsrj.okhttp3.logging.HttpLoggingInterceptor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.pardini.scaleway.depaginator.ScalewayDepaginator;
-import net.pardini.scaleway.model.Image;
-import net.pardini.scaleway.model.Images;
-import net.pardini.scaleway.model.Organization;
-import net.pardini.scaleway.model.Server;
+import net.pardini.scaleway.model.*;
 import net.pardini.scaleway.retrofit.ScalewayAccountAPI;
 import net.pardini.scaleway.retrofit.ScalewayServerAPI;
 import net.pardini.scaleway.wrapper.ServerListWrapper;
 import net.pardini.scaleway.wrapper.ServerSingleWrapper;
+import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
@@ -40,8 +40,75 @@ public class ScalewayClient {
     }
 
     @SneakyThrows
+    void powerOnServer(String serverId) {
+        Actions action = new Actions();
+        action.setAction(Actions.Action.POWERON);
+        Response<Taskresult> taskresultResponse = computeClient.powerOnServer(serverId, action).execute();
+        makeSureResponseSucessfull(taskresultResponse);
+
+        log.info(taskresultResponse.toString());
+        String taskId = taskresultResponse.body().getTask().getId();
+        String taskStatus = taskresultResponse.body().getTask().getStatus();
+
+        while (!taskStatus.equals("success")) {
+
+            log.info("Waiting for task result...");
+            Thread.sleep(5*1000);
+            
+            Response<Taskresult> newTaskStatusResponse = computeClient.getTaskStatus(taskId).execute();
+            makeSureResponseSucessfull(newTaskStatusResponse);
+
+            log.info("New task result: " + newTaskStatusResponse.body().getTask());
+            taskStatus = newTaskStatusResponse.body().getTask().getStatus();
+
+        }
+
+    }
+
+
+    @SneakyThrows
+    public Server createServer(Server.CommercialType commercialType, String imageId, String name, String orgId, List<String> tags, String cloudInitUrl) {
+        Server serverDefinition = new Server();
+        serverDefinition.setCommercialType(commercialType);
+        serverDefinition.setImage(imageId);
+        serverDefinition.setName(name);
+        serverDefinition.setOrganization(orgId);
+        serverDefinition.setTags(tags);
+
+        // Some fixed stuff, to make life easier.
+        serverDefinition.setEnableIpv6(false);
+        serverDefinition.setBootType("local"); // boot from "grub" locally installed we hope
+        serverDefinition.setExtraNetworks(null);
+
+        Call<ServerSingleWrapper> call = computeClient.createServer(serverDefinition);
+        Response<ServerSingleWrapper> callExecution = call.execute();
+        makeSureResponseSucessfull(callExecution);
+
+        Server createdServer = callExecution.body().getServer();
+        String createdServerId = createdServer.getId();
+
+        String cloudInitString = "#include" + "\n" + cloudInitUrl + "\n";
+        Response cloudInitResponse = computeClient.setServerCloudInitData(createdServerId, RequestBody.create(MediaType.parse("text/plain"), cloudInitString)).execute();
+        makeSureResponseSucessfull(cloudInitResponse);
+
+        return createdServer;
+    }
+
+    @SneakyThrows
+    private void makeSureResponseSucessfull(Response someResponse) {
+        // @TODO: better error handling.
+        if (!someResponse.isSuccessful())
+            throw new RuntimeException("Call execution failed: " + someResponse.message() + ": " + someResponse.errorBody().string());
+    }
+
+    @SneakyThrows
     public List<Organization> getAllOrganizations() {
         return accountClient.getAllOrganizations().execute().body().getOrganizations();
+    }
+
+    @SneakyThrows
+    public Organization getOneAndOnlyOrganization() {
+        return this.getAllOrganizations().get(0);
     }
 
     @SneakyThrows

@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "required": [
+    "task"
+  ],
+  "type": "object",
+  "properties": {
+    "task": {
+      "required": [
+        "description",
+        "href_from",
+        "id",
+        "progress",
+        "started_at",
+        "status",
+        "terminated_at"
+      ],
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "terminated_at": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "href_from": {
+          "type": "string"
+        },
+        "progress": {
+          "type": "integer"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -14,7 +14,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 @Slf4j
-public class ScalewayClientTest {
+public class ScalewayClientReadonlyTest {
 
     public static final String TEST_TOKEN = "FAKEEE";
     public static final String EXISTING_SERVER_ID = "a7ca2d20-4eb1-4110-ae90-daab02752a64";

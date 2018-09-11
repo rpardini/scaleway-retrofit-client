@@ -74,6 +74,11 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
         schemaObjOrBoolean["enum"] =getPossibleCommercialTypes();
     }
 
+    if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "action") ) {
+        console.log("Found a action, I think....", pathToSchemaFromParent);
+        schemaObjOrBoolean["enum"] = ["poweron", "poweroff", "reboot"];
+    }
+
     if ( (pathToSchemaFromParent[0] === "properties") && ((pathToSchemaFromParent[1] === "location") || (pathToSchemaFromParent[1] === "default_bootscript"))  ) {
         console.log("Found a location/default_bootscript, I think....", pathToSchemaFromParent);
         const partWeWant = schemaObjOrBoolean.anyOf[1];

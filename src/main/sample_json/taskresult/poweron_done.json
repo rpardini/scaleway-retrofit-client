@@ -1,0 +1,11 @@
+{
+  "task": {
+    "status": "success",
+    "description": "server_batch_poweron",
+    "terminated_at": "2018-09-11T13:06:17.755296+00:00",
+    "href_from": "/servers/babb765a-e59e-473f-a5d4-7cd667a043bf/action",
+    "progress": 100,
+    "started_at": "2018-09-11T13:05:27.534497+00:00",
+    "id": "14548be7-c63c-4ff6-9671-132c9517af64"
+  }
+}
