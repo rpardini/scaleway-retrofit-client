@@ -111,10 +111,15 @@ public class ScalewayClient {
         Server createdServer = callExecution.body().getServer();
         String createdServerId = createdServer.getId();
 
-        String cloudInitString = "#include" + "\n" + cloudInitUrl + "\n";
-        Response cloudInitResponse = computeClient.setServerCloudInitData(createdServerId, RequestBody.create(MediaType.parse("text/plain"), cloudInitString)).execute();
-        makeSureResponseSucessfull(cloudInitResponse);
-
+        if (cloudInitUrl != null) {
+            log.info("Setting cloud-init URL for server " + createdServerId);
+            String cloudInitString = "#include" + "\n" + cloudInitUrl + "\n";
+            Response cloudInitResponse = computeClient.setServerCloudInitData(createdServerId, RequestBody.create(MediaType.parse("text/plain"), cloudInitString)).execute();
+            makeSureResponseSucessfull(cloudInitResponse);
+        } else {
+            log.warn("Cloud-init URL not specified for server " + createdServerId);
+        }
+        
         return createdServer;
     }
 
