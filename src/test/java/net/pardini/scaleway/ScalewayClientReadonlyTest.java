@@ -19,7 +19,7 @@ public class ScalewayClientReadonlyTest {
     public static final String TEST_TOKEN = "FAKEEE";
     public static final String EXISTING_SERVER_ID = "a7ca2d20-4eb1-4110-ae90-daab02752a64";
 
-    private ScalewayClient client;
+    private ScalewayReadOnlyClient client;
 
     @Before
     public void setUp() throws Exception {
@@ -36,7 +36,7 @@ public class ScalewayClientReadonlyTest {
 
     @Test
     public void testFindingExactServerByName() {
-        Server theserver = client.findServerByName("logbox.par1.scaleway.miisy.me");
+        Server theserver = client.findServerByName("logbox.par1.scaleway.miisy.me").get();
         assertEquals("found the exact server", "logbox.par1.scaleway.miisy.me", theserver.getName());
     }
 
@@ -90,7 +90,7 @@ public class ScalewayClientReadonlyTest {
 
     @Test
     public void getGettingSpecificServer() {
-        Server specificServer = client.getSpecificServer(EXISTING_SERVER_ID);
+        Server specificServer = client.getSpecificServer(EXISTING_SERVER_ID).get();
         log.info("Here is the thing");
         log.info(specificServer.toString());
         assertEquals("Correct server returned", "C2L", specificServer.getCommercialType());

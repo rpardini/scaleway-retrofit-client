@@ -1,0 +1,11 @@
+{
+  "dynamic_ip_required": false,
+  "tags": [],
+  "commercial_type": "C2L",
+  "volumes": {},
+  "organization": "***REMOVED***",
+  "name": "scw-31411c",
+  "boot_type": "bootscript",
+  "image": "ca9a9340-92e8-4c5f-8ae1-423466f7ef30",
+  "enable_ipv6": false
+}
