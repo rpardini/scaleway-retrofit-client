@@ -19,6 +19,6 @@
   "name": "scw-8d6ce4",
   "boot_type": "local",
   "image": "ca9a9340-92e8-4c5f-8ae1-423466f7ef30",
-  "enable_ipv6": false,
+  "enable_ipv6": true,
   "public_ip": "10a4d9ad-fa5c-4699-b645-e0ede3657320"
 }

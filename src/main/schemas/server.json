@@ -46,67 +46,62 @@
               "type": "string"
             },
             "modification_date": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
             "public": {
               "type": "boolean"
             },
             "creation_date": {
-              "type": "string"
+              "type": "string",
+              "format": "date-time"
             },
             "default_bootscript": {
-              "anyOf": [
-                {
-                  "type": "null"
+              "required": [
+                "architecture",
+                "bootcmdargs",
+                "default",
+                "dtb",
+                "id",
+                "initrd",
+                "kernel",
+                "organization",
+                "public",
+                "title"
+              ],
+              "type": "object",
+              "properties": {
+                "kernel": {
+                  "type": "string"
                 },
-                {
-                  "required": [
-                    "architecture",
-                    "bootcmdargs",
-                    "default",
-                    "dtb",
-                    "id",
-                    "initrd",
-                    "kernel",
-                    "organization",
-                    "public",
-                    "title"
-                  ],
-                  "type": "object",
-                  "properties": {
-                    "kernel": {
-                      "type": "string"
-                    },
-                    "title": {
-                      "type": "string"
-                    },
-                    "default": {
-                      "type": "boolean"
-                    },
-                    "dtb": {
-                      "type": "string"
-                    },
-                    "public": {
-                      "type": "boolean"
-                    },
-                    "initrd": {
-                      "type": "string"
-                    },
-                    "bootcmdargs": {
-                      "type": "string"
-                    },
-                    "architecture": {
-                      "type": "string"
-                    },
-                    "organization": {
-                      "type": "string"
-                    },
-                    "id": {
-                      "type": "string"
-                    }
-                  }
+                "title": {
+                  "type": "string"
+                },
+                "default": {
+                  "type": "boolean"
+                },
+                "dtb": {
+                  "type": "string"
+                },
+                "public": {
+                  "type": "boolean"
+                },
+                "initrd": {
+                  "type": "string"
+                },
+                "bootcmdargs": {
+                  "type": "string"
+                },
+                "architecture": {
+                  "type": "string"
+                },
+                "organization": {
+                  "type": "string"
+                },
+                "id": {
+                  "type": "string"
                 }
-              ]
+              }
             },
             "state": {
               "type": "string"
@@ -154,7 +149,8 @@
       ]
     },
     "creation_date": {
-      "type": "string"
+      "type": "string",
+      "format": "date-time"
     },
     "public_ip": {
       "anyOf": [
@@ -195,7 +191,8 @@
       "type": "boolean"
     },
     "modification_date": {
-      "type": "string"
+      "type": "string",
+      "format": "date-time"
     },
     "enable_ipv6": {
       "type": "boolean"
@@ -254,38 +251,31 @@
       }
     },
     "location": {
-      "anyOf": [
-        {
-          "type": "null"
+      "required": [
+        "chassis_id",
+        "cluster_id",
+        "node_id",
+        "platform_id",
+        "zone_id"
+      ],
+      "type": "object",
+      "properties": {
+        "platform_id": {
+          "type": "string"
         },
-        {
-          "required": [
-            "chassis_id",
-            "cluster_id",
-            "node_id",
-            "platform_id",
-            "zone_id"
-          ],
-          "type": "object",
-          "properties": {
-            "platform_id": {
-              "type": "string"
-            },
-            "node_id": {
-              "type": "string"
-            },
-            "cluster_id": {
-              "type": "string"
-            },
-            "zone_id": {
-              "type": "string"
-            },
-            "chassis_id": {
-              "type": "string"
-            }
-          }
+        "node_id": {
+          "type": "string"
+        },
+        "cluster_id": {
+          "type": "string"
+        },
+        "zone_id": {
+          "type": "string"
+        },
+        "chassis_id": {
+          "type": "string"
         }
-      ]
+      }
     },
     "boot_type": {
       "type": "string"
@@ -344,29 +334,30 @@
     "volumes": {
       "type": "object",
       "additionalProperties": {
-        "type": "object",
-        "additionalProperties": false,
         "required": [
           "name",
           "organization",
           "size",
           "volume_type"
         ],
+        "type": "object",
         "properties": {
           "name": {
             "type": "string"
           },
           "modification_date": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "export_uri": {
-            "type": "null"
+            "type": "string"
           },
           "volume_type": {
             "type": "string"
           },
           "creation_date": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           },
           "state": {
             "type": "string"
@@ -379,30 +370,28 @@
           },
           "size": {
             "type": "number"
-          },
-          "server": {
-            "type": "object"
           }
-        }
-      },
-      "security_group": {
-        "required": [
-          "id",
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
-      },
-      "organization": {
-        "type": "string"
+        },
+        "additionalProperties": "false"
       }
+    },
+    "security_group": {
+      "required": [
+        "id",
+        "name"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "organization": {
+      "type": "string"
     }
   }
 }

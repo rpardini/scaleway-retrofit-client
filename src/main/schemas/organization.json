@@ -1,236 +1,240 @@
 {
-  "$schema": "http://json-schema.org/schema#", 
+  "$schema": "http://json-schema.org/schema#",
   "required": [
-    "address_city_name", 
-    "address_country_code", 
-    "address_line1", 
-    "address_line2", 
-    "address_postal_code", 
-    "address_subdivision_code", 
-    "creation_date", 
-    "currency", 
-    "customer_class", 
-    "id", 
-    "locale", 
-    "modification_date", 
-    "name", 
-    "support_id", 
-    "support_level", 
-    "support_pin", 
-    "users", 
-    "vat_number", 
+    "address_city_name",
+    "address_country_code",
+    "address_line1",
+    "address_line2",
+    "address_postal_code",
+    "address_subdivision_code",
+    "creation_date",
+    "currency",
+    "customer_class",
+    "id",
+    "locale",
+    "modification_date",
+    "name",
+    "support_id",
+    "support_level",
+    "support_pin",
+    "users",
+    "vat_number",
     "warnings"
-  ], 
-  "type": "object", 
+  ],
+  "type": "object",
   "properties": {
     "address_line2": {
       "type": "null"
-    }, 
+    },
     "address_country_code": {
       "type": "string"
-    }, 
+    },
     "address_line1": {
       "type": "string"
-    }, 
+    },
     "name": {
       "type": "string"
-    }, 
+    },
     "modification_date": {
-      "type": "string"
-    }, 
+      "type": "string",
+      "format": "date-time"
+    },
     "support_level": {
       "type": "string"
-    }, 
+    },
     "locale": {
       "type": "string"
-    }, 
+    },
     "customer_class": {
       "type": "string"
-    }, 
+    },
     "support_id": {
       "type": "string"
-    }, 
+    },
     "creation_date": {
-      "type": "string"
-    }, 
+      "type": "string",
+      "format": "date-time"
+    },
     "currency": {
       "type": "string"
-    }, 
+    },
     "address_postal_code": {
       "type": "string"
-    }, 
+    },
     "address_subdivision_code": {
       "type": "string"
-    }, 
+    },
     "id": {
       "type": "string"
-    }, 
+    },
     "vat_number": {
       "type": "string"
-    }, 
+    },
     "users": {
       "items": {
         "required": [
-          "creation_date", 
-          "double_auth_enabled", 
-          "email", 
-          "firstname", 
-          "fullname", 
-          "id", 
-          "lastname", 
-          "modification_date", 
-          "organizations", 
-          "phone_number", 
-          "roles", 
+          "creation_date",
+          "double_auth_enabled",
+          "email",
+          "firstname",
+          "fullname",
+          "id",
+          "lastname",
+          "modification_date",
+          "organizations",
+          "phone_number",
+          "roles",
           "ssh_public_keys"
-        ], 
-        "type": "object", 
+        ],
+        "type": "object",
         "properties": {
           "phone_number": {
             "type": "null"
-          }, 
+          },
           "organizations": {
             "items": {
               "required": [
-                "id", 
+                "id",
                 "name"
-              ], 
-              "type": "object", 
+              ],
+              "type": "object",
               "properties": {
                 "id": {
                   "type": "string"
-                }, 
+                },
                 "name": {
                   "type": "string"
                 }
               }
-            }, 
+            },
             "type": "array"
-          }, 
+          },
           "double_auth_enabled": {
             "type": "boolean"
-          }, 
+          },
           "firstname": {
             "type": "string"
-          }, 
+          },
           "lastname": {
             "type": "string"
-          }, 
+          },
           "creation_date": {
-            "type": "string"
-          }, 
+            "type": "string",
+            "format": "date-time"
+          },
           "email": {
             "type": "string"
-          }, 
+          },
           "ssh_public_keys": {
             "items": {
               "required": [
-                "fingerprint", 
+                "fingerprint",
                 "key"
-              ], 
-              "type": "object", 
+              ],
+              "type": "object",
               "properties": {
                 "key": {
                   "type": "string"
-                }, 
+                },
                 "fingerprint": {
                   "type": "string"
                 }
               }
-            }, 
+            },
             "type": "array"
-          }, 
+          },
           "roles": {
             "items": {
               "required": [
-                "organization", 
+                "organization",
                 "role"
-              ], 
-              "type": "object", 
+              ],
+              "type": "object",
               "properties": {
                 "organization": {
                   "required": [
-                    "id", 
+                    "id",
                     "name"
-                  ], 
-                  "type": "object", 
+                  ],
+                  "type": "object",
                   "properties": {
                     "id": {
                       "type": "string"
-                    }, 
+                    },
                     "name": {
                       "type": "string"
                     }
                   }
-                }, 
+                },
                 "role": {
                   "type": "string"
                 }
               }
-            }, 
+            },
             "type": "array"
-          }, 
+          },
           "fullname": {
             "type": "string"
-          }, 
+          },
           "id": {
             "type": "string"
-          }, 
+          },
           "modification_date": {
-            "type": "string"
+            "type": "string",
+            "format": "date-time"
           }
         }
-      }, 
+      },
       "type": "array"
-    }, 
+    },
     "support_pin": {
       "type": "string"
-    }, 
+    },
     "warnings": {
       "items": {
         "required": [
-          "closable_by_user", 
-          "closed", 
-          "closed_at", 
-          "id", 
-          "locked_at", 
-          "locking", 
-          "opened_at", 
+          "closable_by_user",
+          "closed",
+          "closed_at",
+          "id",
+          "locked_at",
+          "locking",
+          "opened_at",
           "reason"
-        ], 
-        "type": "object", 
+        ],
+        "type": "object",
         "properties": {
           "locked_at": {
             "type": [
-              "null", 
+              "null",
               "string"
             ]
-          }, 
+          },
           "closable_by_user": {
             "type": "boolean"
-          }, 
+          },
           "locking": {
             "type": "boolean"
-          }, 
+          },
           "reason": {
             "type": "string"
-          }, 
+          },
           "opened_at": {
             "type": "string"
-          }, 
+          },
           "closed": {
             "type": "boolean"
-          }, 
+          },
           "closed_at": {
             "type": "string"
-          }, 
+          },
           "id": {
             "type": "string"
           }
         }
-      }, 
+      },
       "type": "array"
-    }, 
+    },
     "address_city_name": {
       "type": "string"
     }

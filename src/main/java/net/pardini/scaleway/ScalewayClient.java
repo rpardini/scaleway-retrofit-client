@@ -1,5 +1,7 @@
 package net.pardini.scaleway;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.joda.JodaModule;
 import devcsrj.okhttp3.logging.HttpLoggingInterceptor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -84,11 +86,19 @@ public class ScalewayClient {
         httpClient.addInterceptor(new HttpLoggingInterceptor(log));
 
         return new Retrofit.Builder()
+                .addConverterFactory(JacksonConverterFactory.create(configureObjectMapper()))
                 .baseUrl(baseUrl)
                 .client(httpClient.build())
                 .addConverterFactory(JacksonConverterFactory.create())
                 .build();
 
+    }
+
+    private ObjectMapper configureObjectMapper() {
+        final JodaModule jodaModule = new JodaModule();
+        final ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(jodaModule);
+        return objectMapper;
     }
 
 }

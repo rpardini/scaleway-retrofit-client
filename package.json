@@ -1,0 +1,10 @@
+{
+  "name": "scalewayretrofitclient",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "***REMOVED*** <ricardo@pardini.net>",
+  "license": "MIT",
+  "dependencies": {
+    "@cloudflare/json-schema-walker": "^0.1.1"
+  }
+}

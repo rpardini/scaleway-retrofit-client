@@ -1,13 +1,20 @@
 #!/usr/bin/env bash
 
-echo "Generating consolidated schema from sample json..."
-genson -i 2 src/main/sample_json/server/*.json >| src/main/schemas/server.json
+ORIG=$(pwd)
+cd src/main/sample_json
+for schemaType in *; do
+  if [ -d ${schemaType} ]; then
+    echo "Schema type $schemaType ..."
+    echo "Generating consolidated schema from sample json..."
+    genson -i 2 ${schemaType}/*.json >| ${ORIG}/src/main/schemas/${schemaType}.json
+    #if [ -f ${schemaType}/transform.js ]; then
+      echo "Running schema transformer for schema ${schemaType}..."
+      node ${ORIG}/schema_transform.js ${ORIG}/src/main/schemas/${schemaType}.json 
+    #fi
+  fi
+done
+cd "$ORIG" 
 
-echo "Generate schema for Organization..."
-genson -i 2 src/main/sample_json/org/*.json >| src/main/schemas/organization.json
-
-echo "Generate schema for Images..."
-genson -i 2 src/main/sample_json/images/*.json >| src/main/schemas/images.json
 
 echo "Maven will generate pojo from schema..."
 mvn clean compile
