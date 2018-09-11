@@ -33,8 +33,8 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
     }
     
     if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "size") ) {
-        console.log("Found a size, I think....", pathToSchemaFromParent);
-        schemaObjOrBoolean["type"] = "number";
+        //console.log("Found a size, I think....", pathToSchemaFromParent);
+        //schemaObjOrBoolean["type"] = "number";
     }
 
     if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "commercial_type") ) {

@@ -139,7 +139,7 @@
                   "type": "string"
                 },
                 "size": {
-                  "type": "number"
+                  "type": "integer"
                 }
               }
             }
@@ -171,10 +171,7 @@
       }
     },
     "private_ip": {
-      "type": [
-        "null",
-        "string"
-      ]
+      "type": "string"
     },
     "id": {
       "type": "string"
@@ -380,11 +377,26 @@
           "organization": {
             "type": "string"
           },
+          "server": {
+            "required": [
+              "id",
+              "name"
+            ],
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
           "id": {
             "type": "string"
           },
           "size": {
-            "type": "number"
+            "type": "integer"
           }
         },
         "additionalProperties": "false"

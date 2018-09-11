@@ -165,7 +165,8 @@
                     <includeAdditionalProperties>true</includeAdditionalProperties>
                     <includeJsr303Annotations>true</includeJsr303Annotations>
                     <includeToString>true</includeToString>
-                    <useLongIntegers>false</useLongIntegers><!-- not needed, transformer fixes integer to number now -->
+                    <useLongIntegers>false</useLongIntegers>
+                    <useBigIntegers>true</useBigIntegers>
                 </configuration>
                 <executions>
                     <execution>

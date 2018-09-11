@@ -11,6 +11,7 @@ import net.pardini.scaleway.retrofit.ScalewayAccountAPI;
 import net.pardini.scaleway.retrofit.ScalewayServerAPI;
 import net.pardini.scaleway.wrapper.ServerListWrapper;
 import net.pardini.scaleway.wrapper.ServerSingleWrapper;
+import net.pardini.scaleway.wrapper.VolumeWrapper;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -20,6 +21,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
+import java.math.BigInteger;
 import java.util.Comparator;
 import java.util.List;
 
@@ -85,6 +87,11 @@ public class ScalewayClient {
 
     @SneakyThrows
     public Server createServer(Server.CommercialType commercialType, String imageId, String name, String orgId, List<String> tags, String cloudInitUrl) {
+        return this.createServer(commercialType, imageId, name, orgId, tags, cloudInitUrl, null);
+    }
+
+    @SneakyThrows
+    public Server createServer(Server.CommercialType commercialType, String imageId, String name, String orgId, List<String> tags, String cloudInitUrl, List<VolumeWrapper> extraVolumes) {
         // First try and find the server by name, to avoid duplicating...?
         Server serverByName = this.findServerByName(name);
         if (serverByName != null) {
@@ -98,6 +105,24 @@ public class ScalewayClient {
         serverDefinition.setName(name);
         serverDefinition.setOrganization(orgId);
         serverDefinition.setTags(tags);
+
+        // If there are extra volumes, convert them.
+        if (extraVolumes != null && extraVolumes.size() > 0) {
+            Volumes vols = new Volumes();
+            int volCounter = 1;
+            for (VolumeWrapper extraVolume : extraVolumes) {
+                String volumeKey = String.valueOf(volCounter);
+                log.info(String.format("Adding extra volume '%s' of %dGb with key '%s'.", extraVolume.getName(), extraVolume.getSizeInGb(), volumeKey));
+                VolumesProperty volumesProperty = new VolumesProperty();
+                volumesProperty.setName(extraVolume.getName());
+                volumesProperty.setSize(BigInteger.valueOf((extraVolume.getSizeInGb() * 1000 * 1000 * 1000L)));
+                volumesProperty.setOrganization(orgId);
+                volumesProperty.setVolumeType(extraVolume.getType());
+                vols.getAdditionalProperties().put(volumeKey, volumesProperty);
+                volCounter++;
+            }
+            serverDefinition.setVolumes(vols);
+        }
 
         // Some fixed stuff, to make life easier.
         serverDefinition.setEnableIpv6(false);
@@ -119,7 +144,7 @@ public class ScalewayClient {
         } else {
             log.warn("Cloud-init URL not specified for server " + createdServerId);
         }
-        
+
         return createdServer;
     }
 
