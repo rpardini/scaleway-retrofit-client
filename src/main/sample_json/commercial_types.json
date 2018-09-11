@@ -1,0 +1,67 @@
+{
+  "servers": {
+    "X64-120GB": {
+      "availability": "shortage"
+    },
+    "C2S": {
+      "availability": "available"
+    },
+    "START1-M": {
+      "availability": "available"
+    },
+    "ARM64-128GB": {
+      "availability": "shortage"
+    },
+    "START1-S": {
+      "availability": "available"
+    },
+    "VC1S": {
+      "availability": "available"
+    },
+    "START1-XS": {
+      "availability": "available"
+    },
+    "ARM64-16GB": {
+      "availability": "scarce"
+    },
+    "ARM64-4GB": {
+      "availability": "scarce"
+    },
+    "C2L": {
+      "availability": "scarce"
+    },
+    "X64-15GB": {
+      "availability": "available"
+    },
+    "ARM64-32GB": {
+      "availability": "shortage"
+    },
+    "ARM64-2GB": {
+      "availability": "scarce"
+    },
+    "ARM64-64GB": {
+      "availability": "shortage"
+    },
+    "ARM64-8GB": {
+      "availability": "scarce"
+    },
+    "X64-30GB": {
+      "availability": "scarce"
+    },
+    "START1-L": {
+      "availability": "available"
+    },
+    "C2M": {
+      "availability": "scarce"
+    },
+    "X64-60GB": {
+      "availability": "shortage"
+    },
+    "VC1L": {
+      "availability": "available"
+    },
+    "VC1M": {
+      "availability": "available"
+    }
+  }
+}

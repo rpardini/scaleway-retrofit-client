@@ -1,19 +1,8 @@
 const walker = require("@cloudflare/json-schema-walker");
-//console.log("Hello damn it", walker);
-console.log(process.argv);
-
-//const transformFile = process.argv[2];
 const schemaFile = process.argv[2];
-
 console.log("Transforming schema", schemaFile);
-
-//console.log(walker.schemaWalk);
-
-
 const fs = require('fs');
 var json = JSON.parse(fs.readFileSync(schemaFile, 'utf8'));
-
-//console.log("Schema actually", json);
 
 
 // Warn if overriding existing method
@@ -47,6 +36,18 @@ Array.prototype.equals = function (array) {
 Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
 
+function getPossibleCommercialTypes() {
+    // @TODO: read directly from: https://cp-ams1.scaleway.com/products/servers/availability
+    // also possibly from https://cp-par1.scaleway.com/products/servers/availability
+    let json = JSON.parse(fs.readFileSync("../../../src/main/sample_json/commercial_types.json", 'utf8'));
+    let validTypes = [];
+    for (let oneType in json.servers) {
+        validTypes.push(oneType);
+    }
+    return validTypes;
+}
+
+
 /*
 The schema object (or boolean) being processed
 The path to the schema from its parent
@@ -68,10 +69,13 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
         schemaObjOrBoolean["type"] = "number";
     }
 
+    if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "commercial_type") ) {
+        console.log("Found a commercial_type, I think....", pathToSchemaFromParent);
+        schemaObjOrBoolean["enum"] =getPossibleCommercialTypes();
+    }
+
     if ( (pathToSchemaFromParent[0] === "properties") && ((pathToSchemaFromParent[1] === "location") || (pathToSchemaFromParent[1] === "default_bootscript"))  ) {
         console.log("Found a location/default_bootscript, I think....", pathToSchemaFromParent);
-        console.dir(schemaObjOrBoolean);
-        
         const partWeWant = schemaObjOrBoolean.anyOf[1];
         delete schemaObjOrBoolean["anyOf"];
         schemaObjOrBoolean["required"] = partWeWant["required"];
@@ -86,50 +90,18 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
 
     if ( (pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "volumes") ) {
         console.log("Found a volume, I think....", pathToSchemaFromParent);
-        console.dir(schemaObjOrBoolean);
-        
-        // save the property we want, which is index 1
         const propWeWant = schemaObjOrBoolean.properties[1];
-        console.log("The prop we want", propWeWant);
-
         delete schemaObjOrBoolean["properties"];
         propWeWant["type"] = "object";
         propWeWant["additionalProperties"] = "false";
-        
         schemaObjOrBoolean["additionalProperties"] = propWeWant; 
-        
-        //schemaObjOrBoolean["type"] = "number";
     }
-
-    
-    
-    if (false) {
-        console.log("-------------- raiosFunc ------- PathToSchema: ", pathToSchemaFromParent);
-        //console.log("-------------- raiosFunc ------- Parent Schema: ", parentSchemaObjectIfAny);
-        //console.log("-------------- raiosFunc ------- PathFromSchema: ", pathFromSchemaToParent);
-        console.log("-----------------------------------------------------------------------------------------------------");
-    }
-
-
-    /*
-    
-        if (pathToSchemaFromParent.equals(['properties', 'creation_date'])) {
-            console.log("FOUND IT!");
-            console.log(schemaObjOrBoolean);
-            schemaObjOrBoolean["type"] = "string";
-            schemaObjOrBoolean["format"] ="date-time";
-            console.log("-----------------------------------------------------------------------------------------------------");
-    
-    
-        }
-    */
 
     console.log("-----------------------------------------------------===========----------------------------------------");
 
 }
 
 walker.schemaWalk(json, null, raiosFunc, walker.getVocabulary(json));
-
 
 console.log("Writing file...");
 fs.writeFileSync(schemaFile, JSON.stringify(json, null, 2), 'utf8');

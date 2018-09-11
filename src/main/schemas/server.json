@@ -284,7 +284,30 @@
       "type": "null"
     },
     "commercial_type": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "X64-120GB",
+        "C2S",
+        "START1-M",
+        "ARM64-128GB",
+        "START1-S",
+        "VC1S",
+        "START1-XS",
+        "ARM64-16GB",
+        "ARM64-4GB",
+        "C2L",
+        "X64-15GB",
+        "ARM64-32GB",
+        "ARM64-2GB",
+        "ARM64-64GB",
+        "ARM64-8GB",
+        "X64-30GB",
+        "START1-L",
+        "C2M",
+        "X64-60GB",
+        "VC1L",
+        "VC1M"
+      ]
     },
     "tags": {
       "items": {
