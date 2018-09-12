@@ -13,7 +13,7 @@ import static net.pardini.scaleway.ScalewayClientReadonlyTest.TEST_TOKEN;
 @Slf4j
 public class ScalewayClientWriteTest {
 
-    private static final String CLOUD_INIT_URL = "https://cloud-init.pardini.net/base";
+    private static final String CLOUD_INIT_URL = "https://cloud-init.pardini.net/agents,scaleway_modern/output=scaleway";
     private ScalewayClient client;
 
     @Before
@@ -34,8 +34,10 @@ public class ScalewayClientWriteTest {
     }
 
     private void assertAndLogCreatedServerDetails(Server createdServer) {
-        log.info(createdServer.toString());
-        log.info("IP address is: " + createdServer.getPublicIp().getAddress());
+        log.info("Created server ID " + createdServer.getId());
+        if (createdServer.getPublicIp() != null) {
+            log.info("IP address is: " + createdServer.getPublicIp().getAddress());
+        }
     }
 
     @Test

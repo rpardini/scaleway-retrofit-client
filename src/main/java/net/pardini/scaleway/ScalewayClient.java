@@ -83,7 +83,7 @@ class ScalewayClient extends ScalewayReadOnlyClient {
         Optional<Server> serverByName = this.findServerByName(name);
         if (serverByName.isPresent()) {
             log.warn(String.format("Server '%s' already exists. Not creating a new one.", name));
-            return serverByName.get();
+            return definition.isPowerOn() ? this.powerOnServer(serverByName.get().getId(), definition.isWaitForReady()) : serverByName.get();
         }
 
         if (definition.getCommercialType() == null)
@@ -104,7 +104,7 @@ class ScalewayClient extends ScalewayReadOnlyClient {
             imageId = definition.getImage().getId();
         }
         if (imageId == null && StringUtils.isNotEmpty(definition.getOs())) {
-            log.debug("Finding latest %s image as default.", definition.getOs());
+            log.debug(String.format("Finding latest %s image as default.", definition.getOs()));
             Image bestOsImage = this.getBestArchImageByName(CommercialTypeMapper.archFromCommercialType(definition.getCommercialType()).value(), definition.getOs());
             log.info(String.format("Using %s modified %s", bestOsImage.getName(), bestOsImage.getModificationDate().toString()));
             imageId = bestOsImage.getId();

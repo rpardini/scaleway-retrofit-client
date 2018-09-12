@@ -25,9 +25,13 @@ public class ServerDefinition {
 
     private String imageId;
     private String organizationId;
-    private String os;
+    
+    @Builder.Default
+    private String os = "Ubuntu Xenial";
 
+    @Builder.Default
     private boolean waitForReady = true;
+    @Builder.Default
     private boolean powerOn = true;
 
 
