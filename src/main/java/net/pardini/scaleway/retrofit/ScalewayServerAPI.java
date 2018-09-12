@@ -15,11 +15,11 @@ public interface ScalewayServerAPI {
 
 
     @GET("/servers")
-    public Call<ServerListWrapper> getAllServers(@Query("per_page") int per_page, @Query("page") int page);
+    Call<ServerListWrapper> getAllServers(@Query("per_page") int per_page, @Query("page") int page);
 
 
     @GET("/servers")
-    public Call<ServerListWrapper> findServerByName(@Query("per_page") int per_page, @Query("page") int page, @Query("name") String name);
+    Call<ServerListWrapper> findServerByName(@Query("per_page") int per_page, @Query("page") int page, @Query("name") String name);
 
 
     @GET("/servers/{id}")
@@ -27,25 +27,25 @@ public interface ScalewayServerAPI {
 
 
     @GET("/images")
-    public Call<Images> getAllImages(@Query("per_page") int per_page, @Query("page") int page);
+    Call<Images> getAllImages(@Query("per_page") int per_page, @Query("page") int page);
 
     @GET("/images")
-    public Call<Images> getArchImages(@Query("per_page") int per_page, @Query("page") int page, @Query("arch") String arch);
+    Call<Images> getArchImages(@Query("per_page") int per_page, @Query("page") int page, @Query("arch") String arch);
 
     @GET("/images")
-    public Call<Images> getArchImagesByName(@Query("per_page") int per_page, @Query("page") int page, @Query("arch") String arch, @Query("name") String name);
+    Call<Images> getArchImagesByName(@Query("per_page") int per_page, @Query("page") int page, @Query("arch") String arch, @Query("name") String name);
 
     @Headers("Content-type: application/json")
     @POST("/servers")
-    public Call<ServerSingleWrapper> createServer(@Body Server serverDefinition);
+    Call<ServerSingleWrapper> createServer(@Body Server serverDefinition);
 
     @Headers("Content-type: text/plain")
     @PATCH("/servers/{serverId}/user_data/cloud-init")
-    public Call<ResponseBody> setServerCloudInitData(@Path("serverId") String serverId, @Body RequestBody cloudInitContents);
+    Call<ResponseBody> setServerCloudInitData(@Path("serverId") String serverId, @Body RequestBody cloudInitContents);
 
 
     @POST("/servers/{serverId}/action")
-    public Call<Taskresult> powerOnServer(@Path("serverId") String serverId, @Body Actions action);
+    Call<Taskresult> powerOnServer(@Path("serverId") String serverId, @Body Actions action);
 
     @GET("/tasks/{taskId}")
     Call<Taskresult> getTaskStatus(@Path("taskId") String taskId);

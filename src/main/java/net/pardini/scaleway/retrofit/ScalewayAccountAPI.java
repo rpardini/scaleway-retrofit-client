@@ -8,6 +8,6 @@ public interface ScalewayAccountAPI {
 
 
     @GET("/organizations")
-    public Call<OrgListWrapper> getAllOrganizations();
+    Call<OrgListWrapper> getAllOrganizations();
 
 }

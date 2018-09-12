@@ -22,7 +22,7 @@ public class ScalewayClientReadonlyTest {
     private ScalewayReadOnlyClient client;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         client = new ScalewayClient(TEST_TOKEN, ScalewayRegion.PAR1);
     }
 
