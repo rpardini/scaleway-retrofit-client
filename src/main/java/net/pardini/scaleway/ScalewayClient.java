@@ -22,8 +22,12 @@ import java.util.Optional;
 @Slf4j
 class ScalewayClient extends ScalewayReadOnlyClient {
 
+    public ScalewayClient(String authToken, ScalewayRegion region, Boolean logHttpRequestsAndResponses) {
+        super(authToken, region, logHttpRequestsAndResponses);
+    }
+
     public ScalewayClient(String authToken, ScalewayRegion region) {
-        super(authToken, region);
+        super(authToken, region, false);
     }
 
     @SneakyThrows
@@ -43,28 +47,26 @@ class ScalewayClient extends ScalewayReadOnlyClient {
         Response<Taskresult> taskresultResponse = computeClient.powerOnServer(serverId, action).execute();
         makeSureResponseSucessfull(taskresultResponse);
 
-        log.info(taskresultResponse.toString());
         String taskId = Objects.requireNonNull(taskresultResponse.body()).getTask().getId();
         Task.Status status = taskresultResponse.body().getTask().getStatus();
 
         currentServerInfo = this.getSpecificServer(serverId).orElseThrow(RuntimeException::new);
-        log.info("Current server status: " + currentServerInfo.getState() + " detail: " + currentServerInfo.getStateDetail());
+        log.info(String.format("Current server status: %s (%s) [%s]", currentServerInfo.getState(), currentServerInfo.getStateDetail(), currentServerInfo.getId()));
 
         if (!waitForReady) return currentServerInfo;
 
         while (status == Task.Status.PENDING) {
 
-            log.info("Waiting for task result...");
-            Thread.sleep(5 * 1000);
+            log.info(String.format("Waiting for Scaleway task result for server %s...", currentServerInfo.getId()));
+            Thread.sleep(20 * 1000);
 
             Response<Taskresult> newTaskStatusResponse = computeClient.getTaskStatus(taskId).execute();
             makeSureResponseSucessfull(newTaskStatusResponse);
 
-            log.info("New task result: " + Objects.requireNonNull(newTaskStatusResponse.body()).getTask());
             status = newTaskStatusResponse.body().getTask().getStatus();
 
             currentServerInfo = this.getSpecificServer(serverId).orElseThrow(RuntimeException::new);
-            log.info("Current server status: " + currentServerInfo.getState() + " detail: " + currentServerInfo.getStateDetail());
+            log.info(String.format("Current server status: %s (%s) [%s]", currentServerInfo.getState(), currentServerInfo.getStateDetail(), currentServerInfo.getId()));
         }
 
         return currentServerInfo;
@@ -94,8 +96,9 @@ class ScalewayClient extends ScalewayReadOnlyClient {
             orgId = definition.getOrganization().getId();
         }
         if (orgId == null) {
-            log.debug("Using default organization as default.");
+            log.debug("Using default/first organization as default.");
             Organization myOrg = this.getOneAndOnlyOrganization().get();
+            log.debug(String.format("Using organization '%s'.", myOrg.getName()));
             orgId = myOrg.getId();
         }
 
@@ -104,9 +107,9 @@ class ScalewayClient extends ScalewayReadOnlyClient {
             imageId = definition.getImage().getId();
         }
         if (imageId == null && StringUtils.isNotEmpty(definition.getOs())) {
-            log.debug(String.format("Finding latest %s image as default.", definition.getOs()));
+            log.debug(String.format("Finding latest '%s' image....", definition.getOs()));
             Image bestOsImage = this.getBestArchImageByName(CommercialTypeMapper.archFromCommercialType(definition.getCommercialType()).value(), definition.getOs());
-            log.info(String.format("Using %s modified %s", bestOsImage.getName(), bestOsImage.getModificationDate().toString()));
+            log.info(String.format("... using '%s' modified at %s [%s}", bestOsImage.getName(), bestOsImage.getModificationDate().toString(), bestOsImage.getArch()));
             imageId = bestOsImage.getId();
         }
 
@@ -170,11 +173,11 @@ class ScalewayClient extends ScalewayReadOnlyClient {
         }
 
         if (cloudInitString != null) {
-            log.info("Setting cloud-init URL for server " + createdServerId);
+            log.debug("Setting cloud-init URL for server " + createdServerId);
             Response cloudInitResponse = computeClient.setServerCloudInitData(createdServerId, RequestBody.create(MediaType.parse("text/plain"), cloudInitString)).execute();
             makeSureResponseSucessfull(cloudInitResponse);
         } else {
-            log.warn("Cloud-init URL nor Raw specified for server " + createdServerId);
+            log.warn("No Cloud-init URL nor Raw specified for server " + createdServerId);
         }
 
         return definition.isPowerOn() ? this.powerOnServer(createdServerId, definition.isWaitForReady()) : createdServer;

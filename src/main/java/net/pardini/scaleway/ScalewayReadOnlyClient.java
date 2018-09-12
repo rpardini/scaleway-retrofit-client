@@ -18,8 +18,12 @@ import java.util.Optional;
 
 @Slf4j
 class ScalewayReadOnlyClient extends ScalewayRetrofitClient {
+    ScalewayReadOnlyClient(String authToken, ScalewayRegion region, Boolean logHttpRequestsAndResponses) {
+        super(authToken, region, logHttpRequestsAndResponses);
+    }
+
     ScalewayReadOnlyClient(String authToken, ScalewayRegion region) {
-        super(authToken, region);
+        super(authToken, region, false);
     }
 
     @SneakyThrows

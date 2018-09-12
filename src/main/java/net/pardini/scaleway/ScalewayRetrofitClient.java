@@ -22,10 +22,12 @@ class ScalewayRetrofitClient {
     final ScalewayServerAPI computeClient;
     private final String authToken;
     private final ScalewayRegion region;
+    private boolean logHttpRequestsAndResponses = false;
 
-    ScalewayRetrofitClient(String authToken, ScalewayRegion region) {
+    ScalewayRetrofitClient(String authToken, ScalewayRegion region, Boolean logHttpRequestsAndResponses) {
         this.authToken = authToken;
         this.region = region;
+        this.logHttpRequestsAndResponses = logHttpRequestsAndResponses;
         this.computeClient = this.createComputeClient();
         this.accountClient = this.createAccountClient();
     }
@@ -60,7 +62,7 @@ class ScalewayRetrofitClient {
             return chain.proceed(request);
         });
 
-        httpClient.addInterceptor(new HttpLoggingInterceptor(log));
+        if (logHttpRequestsAndResponses) httpClient.addInterceptor(new HttpLoggingInterceptor(log));
 
         return new Retrofit.Builder()
                 .addConverterFactory(JacksonConverterFactory.create(configureObjectMapper()))
