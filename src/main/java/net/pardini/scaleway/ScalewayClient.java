@@ -3,10 +3,13 @@ package net.pardini.scaleway;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import net.pardini.scaleway.model.*;
+import net.pardini.scaleway.request.ServerDefinition;
+import net.pardini.scaleway.wrapper.CommercialTypeMapper;
 import net.pardini.scaleway.wrapper.ServerSingleWrapper;
 import net.pardini.scaleway.wrapper.VolumeWrapper;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import org.apache.commons.lang3.StringUtils;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -22,7 +25,7 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
     }
 
     @SneakyThrows
-    Server powerOnServer(String serverId) {
+    Server powerOnServer(String serverId, boolean waitForReady) {
         // Check to see if the server is not already powered-on...
         Server currentServerInfo = this.getSpecificServer(serverId).orElseThrow(() -> {
             throw new RuntimeException("Server to power on not found.");
@@ -42,9 +45,10 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
         String taskId = taskresultResponse.body().getTask().getId();
         Task.Status status = taskresultResponse.body().getTask().getStatus();
 
-
         currentServerInfo = this.getSpecificServer(serverId).orElseThrow(RuntimeException::new);
         log.info("Current server status: " + currentServerInfo.getState() + " detail: " + currentServerInfo.getStateDetail());
+
+        if (!waitForReady) return currentServerInfo;
 
         while (status == Task.Status.PENDING) {
 
@@ -59,7 +63,6 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
 
             currentServerInfo = this.getSpecificServer(serverId).orElseThrow(RuntimeException::new);
             log.info("Current server status: " + currentServerInfo.getState() + " detail: " + currentServerInfo.getStateDetail());
-
         }
 
         return currentServerInfo;
@@ -68,67 +71,110 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
 
 
     @SneakyThrows
-    public Server createServer(Server.CommercialType commercialType, String imageId, String name, String orgId, List<String> tags, String cloudInitUrl) {
-        return this.createServer(commercialType, imageId, name, orgId, tags, cloudInitUrl, null);
-    }
+    public Server startServer(ServerDefinition definition) {
 
-    @SneakyThrows
-    public Server createServer(Server.CommercialType commercialType, String imageId, String name, String orgId, List<String> tags, String cloudInitUrl, List<VolumeWrapper> extraVolumes) {
         // First try and find the server by name, to avoid duplicating...?
+        String name = definition.getName();
+        if (StringUtils.isEmpty(name))
+            throw new RuntimeException("name is required, and is a key for servers in the same region");
+
         Optional<Server> serverByName = this.findServerByName(name);
         if (serverByName.isPresent()) {
-            log.warn("Server " + name + " already exists. Not creating a new one.");
+            log.warn(String.format("Server '%s' already exists. Not creating a new one.", name));
             return serverByName.get();
         }
 
-        Server serverDefinition = new Server();
-        serverDefinition.setCommercialType(commercialType);
-        serverDefinition.setImage(imageId);
-        serverDefinition.setName(name);
-        serverDefinition.setOrganization(orgId);
-        serverDefinition.setTags(tags);
+        if (definition.getCommercialType() == null)
+            throw new RuntimeException("commercialType is required.");
 
-        // If there are extra volumes, convert them.
-        if (extraVolumes != null && extraVolumes.size() > 0) {
-            Volumes vols = new Volumes();
-            int volCounter = 1;
-            for (VolumeWrapper extraVolume : extraVolumes) {
-                String volumeKey = String.valueOf(volCounter);
-                log.info(String.format("Adding extra volume '%s' of %dGb with key '%s'.", extraVolume.getName(), extraVolume.getSizeInGb(), volumeKey));
-                VolumesProperty volumesProperty = new VolumesProperty();
-                volumesProperty.setName(extraVolume.getName());
-                volumesProperty.setSize(BigInteger.valueOf((extraVolume.getSizeInGb() * 1000 * 1000 * 1000L)));
-                volumesProperty.setOrganization(orgId);
-                volumesProperty.setVolumeType(extraVolume.getType());
-                vols.getAdditionalProperties().put(volumeKey, volumesProperty);
-                volCounter++;
-            }
-            serverDefinition.setVolumes(vols);
+        String orgId = definition.getOrganizationId();
+        if (definition.getOrganization() != null) {
+            orgId = definition.getOrganization().getId();
+        }
+        if (orgId == null) {
+            log.debug("Using default organization as default.");
+            Organization myOrg = this.getOneAndOnlyOrganization().get();
+            orgId = myOrg.getId();
         }
 
-        // Some fixed stuff, to make life easier.
-        serverDefinition.setEnableIpv6(false);
-        serverDefinition.setBootType("local"); // boot from "grub" locally installed we hope
-        serverDefinition.setExtraNetworks(null);
+        String imageId = definition.getImageId();
+        if (definition.getImage() != null) {
+            imageId = definition.getImage().getId();
+        }
+        if (imageId == null && StringUtils.isNotEmpty(definition.getOs())) {
+            log.debug("Finding latest %s image as default.", definition.getOs());
+            Image bestOsImage = this.getBestArchImageByName(CommercialTypeMapper.archFromCommercialType(definition.getCommercialType()).value(), definition.getOs());
+            log.info(String.format("Using %s modified %s", bestOsImage.getName(), bestOsImage.getModificationDate().toString()));
+            imageId = bestOsImage.getId();
+        }
 
-        Call<ServerSingleWrapper> call = computeClient.createServer(serverDefinition);
+
+        Server scalewayCreateCall = new Server();
+        scalewayCreateCall.setCommercialType(definition.getCommercialType());
+        scalewayCreateCall.setImage(imageId);
+        scalewayCreateCall.setName(name);
+        scalewayCreateCall.setOrganization(orgId);
+        scalewayCreateCall.setTags(definition.getTags());
+
+
+        // Check for minimum volumes; some commercialTypes require a certain amount of volumes to be present
+        // to avoid frustration we add them automatically if not explictly done by the caller
+        List<VolumeWrapper> extraVolumes = CommercialTypeMapper.minimalVolumesFromCommercialType(definition.getCommercialType()).build();
+        if (definition.getVolumes() != null) {
+            // If there are extra volumes, convert them, but then it is the user's responsability to match them to SW's will.
+            extraVolumes = definition.getVolumes().build();
+        }
+
+
+        Volumes vols = new Volumes();
+        int volCounter = 1;
+        for (VolumeWrapper extraVolume : extraVolumes) {
+            String volumeKey = String.valueOf(volCounter);
+            log.info(String.format("Adding extra volume '%s' of %dGb with key '%s'.", extraVolume.getName(), extraVolume.getSizeInGb(), volumeKey));
+            VolumesProperty volumesProperty = new VolumesProperty();
+            volumesProperty.setName(extraVolume.getName());
+            volumesProperty.setSize(BigInteger.valueOf((extraVolume.getSizeInGb() * 1000 * 1000 * 1000L)));
+            volumesProperty.setOrganization(orgId);
+            volumesProperty.setVolumeType(extraVolume.getType());
+            vols.getAdditionalProperties().put(volumeKey, volumesProperty);
+            volCounter++;
+        }
+        scalewayCreateCall.setVolumes(vols);
+
+        int sumOfGbsSpecified = extraVolumes.stream().map(VolumeWrapper::getSizeInGb).mapToInt(Integer::intValue).sum();
+        log.info(String.format("Total volume size %dGb.", sumOfGbsSpecified));
+
+        // Some fixed stuff, to make life easier.
+        scalewayCreateCall.setEnableIpv6(false);
+        scalewayCreateCall.setBootType("local"); // boot from "grub" locally installed; does not work on baremetal types, nor ARM i guess...
+        scalewayCreateCall.setExtraNetworks(null);
+
+        Call<ServerSingleWrapper> call = computeClient.createServer(scalewayCreateCall);
         Response<ServerSingleWrapper> callExecution = call.execute();
         makeSureResponseSucessfull(callExecution);
 
         Server createdServer = callExecution.body().getServer();
         String createdServerId = createdServer.getId();
 
-        if (cloudInitUrl != null) {
+        String cloudInitString = null;
+        if (definition.getCloudInitUrl() != null) {
+            log.debug("Using cloud-init URL " + definition.getCloudInitUrl());
+            cloudInitString = "#include" + "\n" + definition.getCloudInitUrl() + "\n";
+        }
+
+        if (cloudInitString == null && StringUtils.isNotEmpty(definition.getCloudInitRaw())) {
+            log.debug("Using raw cloudinit string " + definition.getCloudInitRaw());
+            cloudInitString = definition.getCloudInitRaw();
+        }
+
+        if (cloudInitString != null) {
             log.info("Setting cloud-init URL for server " + createdServerId);
-            String cloudInitString = "#include" + "\n" + cloudInitUrl + "\n";
             Response cloudInitResponse = computeClient.setServerCloudInitData(createdServerId, RequestBody.create(MediaType.parse("text/plain"), cloudInitString)).execute();
             makeSureResponseSucessfull(cloudInitResponse);
         } else {
-            log.warn("Cloud-init URL not specified for server " + createdServerId);
+            log.warn("Cloud-init URL nor Raw specified for server " + createdServerId);
         }
 
-        return createdServer;
+        return definition.isPowerOn() ? this.powerOnServer(createdServerId, definition.isWaitForReady()) : createdServer;
     }
-
-
 }

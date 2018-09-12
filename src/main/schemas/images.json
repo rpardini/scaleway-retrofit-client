@@ -74,7 +74,12 @@
                 "type": "string"
               },
               "architecture": {
-                "type": "string"
+                "type": "string",
+                "enum": [
+                  "x86_64",
+                  "arm64",
+                  "arm"
+                ]
               },
               "organization": {
                 "type": "string"
@@ -97,7 +102,12 @@
             "type": "array"
           },
           "arch": {
-            "type": "string"
+            "type": "string",
+            "enum": [
+              "x86_64",
+              "arm64",
+              "arm"
+            ]
           },
           "id": {
             "type": "string"

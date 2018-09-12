@@ -1,13 +1,37 @@
 {
   "servers": {
-    "X64-120GB": {
-      "availability": "shortage"
+    "VC1S": {
+      "availability": "available"
+    },
+    "START1-XS": {
+      "availability": "available"
+    },
+    "ARM64-8GB": {
+      "availability": "scarce"
     },
     "C2S": {
       "availability": "available"
     },
-    "START1-M": {
+    "X64-15GB": {
       "availability": "available"
+    },
+    "ARM64-2GB": {
+      "availability": "scarce"
+    },
+    "C1": {
+      "availability": "scarce"
+    },
+    "ARM64-32GB": {
+      "availability": "shortage"
+    },
+    "C2L": {
+      "availability": "scarce"
+    },
+    "C2M": {
+      "availability": "available"
+    },
+    "ARM64-4GB": {
+      "availability": "scarce"
     },
     "ARM64-128GB": {
       "availability": "shortage"
@@ -15,53 +39,32 @@
     "START1-S": {
       "availability": "available"
     },
-    "VC1S": {
-      "availability": "available"
-    },
-    "START1-XS": {
-      "availability": "available"
-    },
-    "ARM64-16GB": {
-      "availability": "scarce"
-    },
-    "ARM64-4GB": {
-      "availability": "scarce"
-    },
-    "C2L": {
-      "availability": "scarce"
-    },
-    "X64-15GB": {
-      "availability": "available"
-    },
-    "ARM64-32GB": {
-      "availability": "shortage"
-    },
-    "ARM64-2GB": {
+    "X64-30GB": {
       "availability": "scarce"
     },
     "ARM64-64GB": {
       "availability": "shortage"
     },
-    "ARM64-8GB": {
-      "availability": "scarce"
-    },
-    "X64-30GB": {
-      "availability": "scarce"
-    },
     "START1-L": {
       "availability": "available"
     },
-    "C2M": {
-      "availability": "scarce"
-    },
-    "X64-60GB": {
-      "availability": "shortage"
+    "START1-M": {
+      "availability": "available"
     },
     "VC1L": {
       "availability": "available"
     },
     "VC1M": {
       "availability": "available"
+    },
+    "X64-120GB": {
+      "availability": "shortage"
+    },
+    "ARM64-16GB": {
+      "availability": "scarce"
+    },
+    "X64-60GB": {
+      "availability": "shortage"
     }
   }
 }

@@ -92,7 +92,12 @@
                   "type": "string"
                 },
                 "architecture": {
-                  "type": "string"
+                  "type": "string",
+                  "enum": [
+                    "x86_64",
+                    "arm64",
+                    "arm"
+                  ]
                 },
                 "organization": {
                   "type": "string"
@@ -115,7 +120,12 @@
               "type": "array"
             },
             "arch": {
-              "type": "string"
+              "type": "string",
+              "enum": [
+                "x86_64",
+                "arm64",
+                "arm"
+              ]
             },
             "id": {
               "type": "string"
@@ -229,7 +239,12 @@
           "type": "string"
         },
         "architecture": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "x86_64",
+            "arm64",
+            "arm"
+          ]
         },
         "organization": {
           "type": "string"
@@ -275,27 +290,28 @@
     "commercial_type": {
       "type": "string",
       "enum": [
-        "X64-120GB",
-        "C2S",
-        "START1-M",
-        "ARM64-128GB",
-        "START1-S",
         "VC1S",
         "START1-XS",
-        "ARM64-16GB",
-        "ARM64-4GB",
-        "C2L",
-        "X64-15GB",
-        "ARM64-32GB",
-        "ARM64-2GB",
-        "ARM64-64GB",
         "ARM64-8GB",
-        "X64-30GB",
-        "START1-L",
+        "C2S",
+        "X64-15GB",
+        "ARM64-2GB",
+        "C1",
+        "ARM64-32GB",
+        "C2L",
         "C2M",
-        "X64-60GB",
+        "ARM64-4GB",
+        "ARM64-128GB",
+        "START1-S",
+        "X64-30GB",
+        "ARM64-64GB",
+        "START1-L",
+        "START1-M",
         "VC1L",
-        "VC1M"
+        "VC1M",
+        "X64-120GB",
+        "ARM64-16GB",
+        "X64-60GB"
       ]
     },
     "tags": {
@@ -305,7 +321,12 @@
       "type": "array"
     },
     "arch": {
-      "type": "string"
+      "type": "string",
+      "enum": [
+        "x86_64",
+        "arm64",
+        "arm"
+      ]
     },
     "extra_networks": {
       "items": {

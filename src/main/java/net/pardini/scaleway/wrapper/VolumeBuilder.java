@@ -5,7 +5,7 @@ import java.util.List;
 
 public class VolumeBuilder {
 
-    public List<VolumeWrapper> volumes = new ArrayList<>();
+    private List<VolumeWrapper> volumes = new ArrayList<>();
 
     public static VolumeBuilder builder() {
         return new VolumeBuilder();
