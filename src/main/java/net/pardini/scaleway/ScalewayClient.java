@@ -37,7 +37,7 @@ class ScalewayClient extends ScalewayReadOnlyClient {
             throw new RuntimeException("Server to power on not found.");
         });
         if (currentServerInfo.getState().equals("running")) {
-            log.warn("Server " + serverId + " (" + currentServerInfo.getName() + ") is already running. Not powering it on again.");
+            log.warn(String.format("Server %s (%s) is already running in state %s (%s). Not powering it on again.", serverId, currentServerInfo.getName(), currentServerInfo.getState(), currentServerInfo.getStateDetail()));
             return currentServerInfo;
         }
 
