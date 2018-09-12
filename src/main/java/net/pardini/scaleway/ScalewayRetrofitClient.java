@@ -13,15 +13,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
-@Slf4j
-public class ScalewayRetrofitClient {
-    protected static final int DEFAULT_PAGE_SIZE = 100;
-    protected final ScalewayAccountAPI accountClient;
-    protected final ScalewayServerAPI computeClient;
-    protected String authToken;
-    protected ScalewayRegion region;
+import java.util.Objects;
 
-    public ScalewayRetrofitClient(String authToken, ScalewayRegion region) {
+@Slf4j
+class ScalewayRetrofitClient {
+    static final int DEFAULT_PAGE_SIZE = 100;
+    final ScalewayAccountAPI accountClient;
+    final ScalewayServerAPI computeClient;
+    private final String authToken;
+    private final ScalewayRegion region;
+
+    ScalewayRetrofitClient(String authToken, ScalewayRegion region) {
         this.authToken = authToken;
         this.region = region;
         this.computeClient = this.createComputeClient();
@@ -29,18 +31,18 @@ public class ScalewayRetrofitClient {
     }
 
     @SneakyThrows
-    protected void makeSureResponseSucessfull(Response someResponse) {
+    void makeSureResponseSucessfull(Response someResponse) {
         if (!someResponse.isSuccessful())
-            throw new RuntimeException("Scaleway Call failed: " + someResponse.message() + ": " + someResponse.errorBody().string());
+            throw new RuntimeException("Scaleway Call failed: " + someResponse.message() + ": " + Objects.requireNonNull(someResponse.errorBody()).string());
     }
 
-    protected ScalewayAccountAPI createAccountClient() {
+    private ScalewayAccountAPI createAccountClient() {
         String baseUrl = "https://account.scaleway.com/";
         Retrofit retrofit = createClientForURL(baseUrl);
         return retrofit.create(ScalewayAccountAPI.class);
     }
 
-    protected ScalewayServerAPI createComputeClient() {
+    private ScalewayServerAPI createComputeClient() {
         String baseUrl = region == ScalewayRegion.PAR1 ? "https://cp-par1.scaleway.com/" : "https://cp-ams1.scaleway.com/";
         Retrofit retrofit = createClientForURL(baseUrl);
         return retrofit.create(ScalewayServerAPI.class);

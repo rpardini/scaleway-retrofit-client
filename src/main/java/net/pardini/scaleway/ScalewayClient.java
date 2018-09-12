@@ -15,17 +15,19 @@ import retrofit2.Response;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
+@SuppressWarnings("ConstantConditions")
 @Slf4j
-public class ScalewayClient extends ScalewayReadOnlyClient {
+class ScalewayClient extends ScalewayReadOnlyClient {
 
     public ScalewayClient(String authToken, ScalewayRegion region) {
         super(authToken, region);
     }
 
     @SneakyThrows
-    Server powerOnServer(String serverId, boolean waitForReady) {
+    private Server powerOnServer(String serverId, boolean waitForReady) {
         // Check to see if the server is not already powered-on...
         Server currentServerInfo = this.getSpecificServer(serverId).orElseThrow(() -> {
             throw new RuntimeException("Server to power on not found.");
@@ -42,7 +44,7 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
         makeSureResponseSucessfull(taskresultResponse);
 
         log.info(taskresultResponse.toString());
-        String taskId = taskresultResponse.body().getTask().getId();
+        String taskId = Objects.requireNonNull(taskresultResponse.body()).getTask().getId();
         Task.Status status = taskresultResponse.body().getTask().getStatus();
 
         currentServerInfo = this.getSpecificServer(serverId).orElseThrow(RuntimeException::new);
@@ -58,7 +60,7 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
             Response<Taskresult> newTaskStatusResponse = computeClient.getTaskStatus(taskId).execute();
             makeSureResponseSucessfull(newTaskStatusResponse);
 
-            log.info("New task result: " + newTaskStatusResponse.body().getTask());
+            log.info("New task result: " + Objects.requireNonNull(newTaskStatusResponse.body()).getTask());
             status = newTaskStatusResponse.body().getTask().getStatus();
 
             currentServerInfo = this.getSpecificServer(serverId).orElseThrow(RuntimeException::new);
@@ -153,7 +155,7 @@ public class ScalewayClient extends ScalewayReadOnlyClient {
         Response<ServerSingleWrapper> callExecution = call.execute();
         makeSureResponseSucessfull(callExecution);
 
-        Server createdServer = callExecution.body().getServer();
+        Server createdServer = Objects.requireNonNull(callExecution.body()).getServer();
         String createdServerId = createdServer.getId();
 
         String cloudInitString = null;

@@ -74,7 +74,7 @@ public class ScalewayClientReadonlyTest {
     @Test
     public void testGettingLatestUbuntuXenialX64Image() {
         Image theImage = client.getBestArchImageByName("x86_64", "Ubuntu Xenial");
-        assertTrue("found an image", theImage != null);
+        assertNotNull("found an image", theImage);
     }
 
     @Test
@@ -82,7 +82,7 @@ public class ScalewayClientReadonlyTest {
         List<Organization> allOrganizations = client.getAllOrganizations();
         log.info("Here is the allOrganizations list");
         log.info(allOrganizations.toString());
-        assertTrue("has Exactly one org", allOrganizations.size() == 1);
+        assertEquals("has Exactly one org", 1, allOrganizations.size());
 
     }
 
@@ -91,7 +91,7 @@ public class ScalewayClientReadonlyTest {
         Server specificServer = client.getSpecificServer(EXISTING_SERVER_ID).get();
         log.info("Here is the thing");
         log.info(specificServer.toString());
-        assertEquals("Correct server returned", "C2L", specificServer.getCommercialType());
+        assertEquals("Correct server returned", Server.CommercialType.C_2_L, specificServer.getCommercialType());
         assertNotNull("should have a volume id", specificServer.getVolumes().getAdditionalProperties().get("0").getVolumeType());
         assertEquals("should have a volume exactly", specificServer.getVolumes().getAdditionalProperties().get("0").getVolumeType(), "l_ssd");
 

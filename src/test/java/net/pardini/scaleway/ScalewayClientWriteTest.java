@@ -13,7 +13,7 @@ import static net.pardini.scaleway.ScalewayClientReadonlyTest.TEST_TOKEN;
 @Slf4j
 public class ScalewayClientWriteTest {
 
-    public static final String CLOUD_INIT_URL = "https://cloud-init.pardini.net/base";
+    private static final String CLOUD_INIT_URL = "https://cloud-init.pardini.net/base";
     private ScalewayClient client;
 
     @Before

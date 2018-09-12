@@ -6,6 +6,7 @@ import retrofit2.Response;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public class ScalewayDepaginator<T, R> {
 
@@ -19,7 +20,7 @@ public class ScalewayDepaginator<T, R> {
             if (!execute.isSuccessful()) {
                 throw new RuntimeException("Scaleway query in depaginator not successful: " + execute.message());
             }
-            int totalItems = Integer.parseInt(execute.headers().get("X-Total-Count"));
+            int totalItems = Integer.parseInt(Objects.requireNonNull(execute.headers().get("X-Total-Count")));
             Collection<R> thisPageImages = extractor.extractListObject(execute);
             allItems.addAll(thisPageImages);
             if (!(totalItems > allItems.size())) areThereMorePages = false;
