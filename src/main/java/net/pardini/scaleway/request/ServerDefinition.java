@@ -26,7 +26,7 @@ public class ServerDefinition {
     private String imageId;
     private String organizationId;
     private String os;
-    
+
     private boolean waitForReady = true;
     private boolean powerOn = true;
 

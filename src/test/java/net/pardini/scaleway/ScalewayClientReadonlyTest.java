@@ -9,9 +9,7 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @Slf4j
 public class ScalewayClientReadonlyTest {
@@ -96,6 +94,6 @@ public class ScalewayClientReadonlyTest {
         assertEquals("Correct server returned", "C2L", specificServer.getCommercialType());
         assertNotNull("should have a volume id", specificServer.getVolumes().getAdditionalProperties().get("0").getVolumeType());
         assertEquals("should have a volume exactly", specificServer.getVolumes().getAdditionalProperties().get("0").getVolumeType(), "l_ssd");
-        
+
     }
 }

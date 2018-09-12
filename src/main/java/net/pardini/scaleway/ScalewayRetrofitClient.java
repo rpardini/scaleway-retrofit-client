@@ -27,7 +27,7 @@ public class ScalewayRetrofitClient {
         this.computeClient = this.createComputeClient();
         this.accountClient = this.createAccountClient();
     }
-    
+
     @SneakyThrows
     protected void makeSureResponseSucessfull(Response someResponse) {
         if (!someResponse.isSuccessful())
