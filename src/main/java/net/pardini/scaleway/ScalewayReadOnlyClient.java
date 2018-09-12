@@ -17,7 +17,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Slf4j
-class ScalewayReadOnlyClient extends ScalewayRetrofitClient {
+public class ScalewayReadOnlyClient extends ScalewayRetrofitClient {
     ScalewayReadOnlyClient(String authToken, ScalewayRegion region, Boolean logHttpRequestsAndResponses) {
         super(authToken, region, logHttpRequestsAndResponses);
     }
@@ -32,7 +32,7 @@ class ScalewayReadOnlyClient extends ScalewayRetrofitClient {
     }
 
     @SneakyThrows
-    Optional<Organization> getOneAndOnlyOrganization() {
+    public Optional<Organization> getOneAndOnlyOrganization() {
         return Optional.ofNullable(this.getAllOrganizations().get(0));
     }
 

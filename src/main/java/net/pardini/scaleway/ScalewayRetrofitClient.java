@@ -16,7 +16,7 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
 import java.util.Objects;
 
 @Slf4j
-class ScalewayRetrofitClient {
+public class ScalewayRetrofitClient {
     static final int DEFAULT_PAGE_SIZE = 100;
     final ScalewayAccountAPI accountClient;
     final ScalewayServerAPI computeClient;

@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @SuppressWarnings("ConstantConditions")
 @Slf4j
-class ScalewayClient extends ScalewayReadOnlyClient {
+public class ScalewayClient extends ScalewayReadOnlyClient {
 
     public ScalewayClient(String authToken, ScalewayRegion region, Boolean logHttpRequestsAndResponses) {
         super(authToken, region, logHttpRequestsAndResponses);
@@ -31,7 +31,7 @@ class ScalewayClient extends ScalewayReadOnlyClient {
     }
 
     @SneakyThrows
-    private Server powerOnServer(String serverId, boolean waitForReady) {
+    public  Server powerOnServer(String serverId, boolean waitForReady) {
         // Check to see if the server is not already powered-on...
         Server currentServerInfo = this.getSpecificServer(serverId).orElseThrow(() -> {
             throw new RuntimeException("Server to power on not found.");
