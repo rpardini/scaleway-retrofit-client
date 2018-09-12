@@ -7,10 +7,8 @@ for schemaType in *; do
     echo "Schema type $schemaType ..."
     echo "Generating consolidated schema from sample json..."
     genson -i 2 ${schemaType}/*.json >| ${ORIG}/src/main/schemas/${schemaType}.json
-    #if [ -f ${schemaType}/transform.js ]; then
-      echo "Running schema transformer for schema ${schemaType}..."
-      node ${ORIG}/schema_transform.js ${ORIG}/src/main/schemas/${schemaType}.json 
-    #fi
+    echo "Running schema transformer for schema ${schemaType}..."
+    node ${ORIG}/schema_transform.js ${ORIG}/src/main/schemas/${schemaType}.json 
   fi
 done
 cd "$ORIG" 

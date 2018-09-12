@@ -6,7 +6,7 @@
 
     <groupId>net.pardini</groupId>
     <artifactId>scaleway-retrofit-client</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <version>0.1-RELEASE</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -71,7 +71,7 @@
             <artifactId>joda-time</artifactId>
             <version>2.9.9</version>
         </dependency>
-        
+
         <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -97,8 +97,8 @@
             <version>4.12</version>
             <scope>test</scope>
         </dependency>
-        
-        
+
+
         <dependency>
             <groupId>javax.validation</groupId>
             <artifactId>validation-api</artifactId>
@@ -110,7 +110,7 @@
 
         <plugins>
 
-            <plugin>
+            <!--<plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.6</version>
@@ -143,7 +143,7 @@
                     </execution>
 
                 </executions>
-            </plugin>
+            </plugin>-->
 
 
             <plugin>
@@ -189,7 +189,36 @@
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>create-source-jar</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
+
+        <extensions>
+            <extension>
+                <groupId>org.kuali.maven.wagons</groupId>
+                <artifactId>maven-s3-wagon</artifactId>
+                <version>1.2.1</version>
+            </extension>
+        </extensions>
+
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>s3.release</id>
+            <url>s3://***REMOVED***maven-prod-repo/release</url>
+        </repository>
+    </distributionManagement>
 
 </project>
