@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
 
+which genson 
+which node
+node --version
+
+which yarn
+yarn --version
+
+yarn install
+
+
 ORIG=$(pwd)
 cd src/main/sample_json
 for schemaType in *; do

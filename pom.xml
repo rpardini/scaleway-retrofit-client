@@ -174,7 +174,7 @@
     <distributionManagement>
         <repository>
             <id>s3.release</id>
-            <url>s3://***REMOVED***maven-prod-repo/release</url>
+            <url>s3://ceapaven-prod-repo/release</url>
         </repository>
     </distributionManagement>
 
