@@ -1,0 +1,7 @@
+.idea
+.git
+.gitignore
+Dockerfile
+*.iml
+node_modules
+target

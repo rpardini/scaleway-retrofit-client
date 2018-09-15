@@ -1,14 +1,6 @@
 #!/usr/bin/env bash
 
-which genson 
-which node
-node --version
-
-which yarn
-yarn --version
-
-yarn install
-
+# This is called by Dockerfile. It depends on genson and a node transform program.
 
 ORIG=$(pwd)
 cd src/main/sample_json
@@ -22,7 +14,3 @@ for schemaType in *; do
   fi
 done
 cd "$ORIG" 
-
-
-echo "Maven will generate pojo from schema..."
-mvn clean compile
