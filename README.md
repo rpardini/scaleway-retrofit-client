@@ -8,6 +8,8 @@ This is a very simple Scaleway API implementation using
 
 It does not aim to be complete.
 
+## Quirks
+
 It does aim to remove the idiosyncrasies from Scaleway API implementation:
 
 - commercialTypes change all the time
@@ -17,7 +19,7 @@ It does aim to remove the idiosyncrasies from Scaleway API implementation:
 - date formats and field nomenclature are not consistent
 - SW does not offer a OpenAPI, Swagger, or JSON schema anywhere, so specially enums have to handcrafted
 
-It assumes a few:
+## It assumes a lot:
 
 - Even though SW api allows it, we try to use the server name as key (in a given region)
 - There's a single organization associated to the Scaleway token
@@ -26,8 +28,15 @@ It assumes a few:
 - cloud-init will be used to provision the servers
 
 
-TODO:
+## TODO:
 
 - support for deleting/powering off servers
 - support for ipv6-enabled servers
 - Dockerfile that allows isolated building, with `genson` and `node/yarn` and `maven`.
+
+
+## Building
+
+Check out `build_deploy_to_s3.sh`: it builds a throw-away Docker image to make the Python/Node/Maven building easier.
+The docker image is then used to run `mvn deploy` with the mapped maven settings file, so it has the credentials to S3.
+

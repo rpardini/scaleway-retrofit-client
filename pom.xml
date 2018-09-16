@@ -171,11 +171,4 @@
 
     </build>
 
-    <distributionManagement>
-        <repository>
-            <id>s3.release</id>
-            <url>s3://ceapaven-prod-repo/release</url>
-        </repository>
-    </distributionManagement>
-
 </project>

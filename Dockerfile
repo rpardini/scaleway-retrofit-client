@@ -30,12 +30,6 @@ COPY --from=pythonNodePhase /src/src /src/src
 # And finally run maven, using the previously resolved dependencies; we compile and install locally first...
 RUN set -ex && mvn --batch-mode --show-version --define 'maven.repo.local=/mvn/repo' --define 'altDeploymentRepository=local::default::file:///mvn/lib' install
 
-# ... then deploy to S3, using credentials provided via docker build ARGs 
-ARG AWS_ACCESS_KEY_ID=undefined
-ARG AWS_SECRET_KEY=undefined
-RUN echo "Access key: $AWS_ACCESS_KEY_ID secret: $AWS_SECRET_KEY "
-RUN if [ "$AWS_ACCESS_KEY_ID" != "undefined" ]; then \
-      mvn --batch-mode --show-version --define 'maven.repo.local=/mvn/repo' --define 'altDeploymentRepository=s3.release::default::s3://ceapaven-prod-repo/release' deploy; \
-    else \
-      echo "Define docker build args with AWS keys to deploy to S3."; \  
-    fi
+# This is the command to deploy to s3, which will be run by "docker run" later.
+VOLUME /root/.m2/settings.xml
+CMD mvn --batch-mode --show-version --define 'maven.repo.local=/mvn/repo' --define 'altDeploymentRepository=s3.release::default::s3://ceapmaven-prod-repo/release' deploy
