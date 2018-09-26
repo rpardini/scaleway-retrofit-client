@@ -37,6 +37,13 @@ function raiosFunc (schemaObjOrBoolean, pathToSchemaFromParent, parentSchemaObje
         //schemaObjOrBoolean["type"] = "number";
     }
 
+    if ((pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "extra_volumes")) {
+        console.log("Found a extra_volumes, I think....", pathToSchemaFromParent);
+        // Remove from the parent; its the only way to get rid of them.
+        delete parentSchemaObjectIfAny['required']['extra_volumes'];
+        delete parentSchemaObjectIfAny['properties']['extra_volumes'];
+    }
+
     if ((pathToSchemaFromParent[0] === "properties") && (pathToSchemaFromParent[1] === "commercial_type")) {
         console.log("Found a commercial_type, I think....", pathToSchemaFromParent);
         schemaObjOrBoolean["enum"] = getPossibleCommercialTypes();

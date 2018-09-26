@@ -1,6 +1,36 @@
 {
   "images": [
     {
+      "creation_date": "2018-09-14T10:01:24.268850+00:00",
+      "default_bootscript": {
+        "kernel": "http://169.254.42.24/kernel/x86_64-mainline-lts-4.9-4.9.93-rev1/vmlinuz-4.9.93",
+        "initrd": "http://169.254.42.24/initrd/initrd-Linux-x86_64-v3.14.5.gz",
+        "default": false,
+        "bootcmdargs": "LINUX_COMMON scaleway boot=local nbd.max_part=16",
+        "architecture": "x86_64",
+        "title": "x86_64 mainline 4.9.93 rev1",
+        "dtb": "",
+        "organization": "11111111-1111-4111-8111-111111111111",
+        "id": "15fbd2f7-a0f9-412b-8502-6a44da8d98b8",
+        "public": true
+      },
+      "from_server": null,
+      "arch": "x86_64",
+      "id": "2fa25ccf-f30e-4225-b328-87472a35c75d",
+      "root_volume": {
+        "size": 50000000000,
+        "id": "e901544b-e15b-4ebe-a3fe-ea508c02b749",
+        "volume_type": "l_ssd",
+        "name": "snapshot-c2920bc6-bf9d-425d-bd83-e055952b80e3-2018-09-14_10:01"
+      },
+      "name": "Alpine Linux",
+      "modification_date": "2018-09-14T10:12:07.259918+00:00",
+      "state": "available",
+      "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
+      "extra_volumes": {},
+      "public": true
+    },
+    {
       "creation_date": "2018-09-06T10:55:20.748481+00:00",
       "default_bootscript": {
         "kernel": "http://169.254.42.24/kernel/x86_64-mainline-lts-4.9-4.9.93-rev1/vmlinuz-4.9.93",
@@ -27,7 +57,7 @@
       "modification_date": "2018-09-06T11:16:06.174039+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -57,7 +87,7 @@
       "modification_date": "2018-09-06T10:51:13.119929+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -87,7 +117,7 @@
       "modification_date": "2018-09-06T10:40:08.145552+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -117,7 +147,7 @@
       "modification_date": "2018-09-05T21:16:06.628440+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -147,7 +177,7 @@
       "modification_date": "2018-09-05T21:16:06.339136+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -177,7 +207,7 @@
       "modification_date": "2018-09-05T21:16:06.062984+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -207,7 +237,7 @@
       "modification_date": "2018-09-02T18:38:06.594570+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -237,7 +267,7 @@
       "modification_date": "2018-08-31T17:20:06.142003+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -267,7 +297,7 @@
       "modification_date": "2018-08-31T17:20:05.917862+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -297,7 +327,7 @@
       "modification_date": "2018-08-31T17:20:05.687183+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -327,7 +357,7 @@
       "modification_date": "2018-08-31T11:05:04.158213+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -357,7 +387,7 @@
       "modification_date": "2018-08-31T10:46:09.570933+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -387,7 +417,7 @@
       "modification_date": "2018-08-31T10:46:09.862457+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -417,7 +447,7 @@
       "modification_date": "2018-08-31T11:46:04.855239+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -447,7 +477,7 @@
       "modification_date": "2018-08-31T11:46:04.650055+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -477,7 +507,7 @@
       "modification_date": "2018-08-31T11:46:04.492347+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -507,7 +537,7 @@
       "modification_date": "2018-08-30T13:09:05.048168+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -537,7 +567,7 @@
       "modification_date": "2018-08-30T14:26:04.647066+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -567,7 +597,7 @@
       "modification_date": "2018-08-30T13:03:04.246712+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -597,7 +627,7 @@
       "modification_date": "2018-08-30T12:41:22.792241+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -627,7 +657,7 @@
       "modification_date": "2018-08-30T12:40:05.097570+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -657,7 +687,7 @@
       "modification_date": "2018-08-30T12:03:05.160189+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -687,7 +717,7 @@
       "modification_date": "2018-08-30T09:47:04.750059+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -717,7 +747,7 @@
       "modification_date": "2018-08-30T10:09:04.712884+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -747,7 +777,7 @@
       "modification_date": "2018-08-30T07:42:04.290529+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -777,7 +807,7 @@
       "modification_date": "2018-08-30T05:54:04.977341+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -807,7 +837,7 @@
       "modification_date": "2018-08-30T04:03:03.858401+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -837,7 +867,7 @@
       "modification_date": "2018-08-30T01:42:05.586690+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -867,7 +897,7 @@
       "modification_date": "2018-08-29T23:57:04.761316+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -897,7 +927,7 @@
       "modification_date": "2018-08-29T21:42:04.402439+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -927,7 +957,7 @@
       "modification_date": "2018-08-29T20:13:03.823805+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -957,7 +987,7 @@
       "modification_date": "2018-08-29T18:15:05.988917+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -987,7 +1017,7 @@
       "modification_date": "2018-08-29T16:12:04.378292+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1017,7 +1047,7 @@
       "modification_date": "2018-08-29T10:04:04.993625+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1047,7 +1077,7 @@
       "modification_date": "2018-08-29T08:30:04.504588+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1077,7 +1107,7 @@
       "modification_date": "2018-08-29T11:23:06.173615+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1107,7 +1137,7 @@
       "modification_date": "2018-08-29T11:23:06.017900+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1137,7 +1167,7 @@
       "modification_date": "2018-08-29T11:23:05.859409+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1167,7 +1197,7 @@
       "modification_date": "2018-08-29T07:52:09.538782+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1197,7 +1227,7 @@
       "modification_date": "2018-08-28T20:44:05.164174+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1227,7 +1257,7 @@
       "modification_date": "2018-08-28T20:44:05.051882+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1257,7 +1287,7 @@
       "modification_date": "2018-08-28T20:44:04.930314+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1287,7 +1317,7 @@
       "modification_date": "2018-08-28T10:18:04.251245+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1317,7 +1347,7 @@
       "modification_date": "2018-08-28T10:02:06.989733+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1347,7 +1377,7 @@
       "modification_date": "2018-08-28T10:42:04.850836+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1377,7 +1407,7 @@
       "modification_date": "2018-08-28T10:42:04.728898+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1407,7 +1437,7 @@
       "modification_date": "2018-08-28T10:42:04.603861+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1426,7 +1456,7 @@
       "modification_date": "2018-08-01T09:54:41.166064+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     },
     {
@@ -1445,37 +1475,7 @@
       "modification_date": "2018-08-01T09:53:19.746874+00:00",
       "state": "available",
       "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
-      "public": true
-    },
-    {
-      "creation_date": "2018-07-26T10:25:46.589253+00:00",
-      "default_bootscript": {
-        "kernel": "http://169.254.42.24/kernel/x86_64-mainline-lts-4.4-4.4.127-rev1/vmlinuz-4.4.127",
-        "initrd": "http://169.254.42.24/initrd/initrd-Linux-x86_64-v3.14.5.gz",
-        "default": true,
-        "bootcmdargs": "LINUX_COMMON scaleway boot=local nbd.max_part=16",
-        "architecture": "x86_64",
-        "title": "x86_64 mainline 4.4.127 rev1",
-        "dtb": "",
-        "organization": "11111111-1111-4111-8111-111111111111",
-        "id": "b1e68c26-a19c-4eac-9222-498b22bd7ad9",
-        "public": true
-      },
-      "from_server": null,
-      "arch": "x86_64",
-      "id": "8cdb9059-f1f7-4880-a209-2b1b3e02506c",
-      "root_volume": {
-        "size": 50000000000,
-        "id": "d53f1427-e068-49de-80d9-f546d46cbce9",
-        "volume_type": "l_ssd",
-        "name": "snapshot-00396582-8203-47f5-bfba-f53221c7f552-2018-07-26_10:25"
-      },
-      "name": "Fedora 27",
-      "modification_date": "2018-07-26T10:48:06.082999+00:00",
-      "state": "available",
-      "organization": "51b656e3-4865-41e8-adbc-0c45bdd780db",
-      "extra_volumes": [],
+      "extra_volumes": {},
       "public": true
     }
   ]

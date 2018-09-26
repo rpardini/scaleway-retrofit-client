@@ -98,9 +98,6 @@
           "organization": {
             "type": "string"
           },
-          "extra_volumes": {
-            "type": "array"
-          },
           "arch": {
             "type": "string",
             "enum": [
